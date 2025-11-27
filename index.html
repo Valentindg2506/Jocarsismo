@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iglesia del Santo Pingüino</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        body{
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #1bffb3 0, #001111 40%, #000 100%);
+            color:#e2e8f0;
+            min-height:100vh;
+        }
+
+        /* Fondo tipo "Matrix" */
+        body::before{
+            content:"";
+            position:fixed;
+            inset:0;
+            background-image:linear-gradient(#00ff88 1px, transparent 1px),
+                             linear-gradient(90deg, #00ff88 1px, transparent 1px);
+            background-size:40px 40px;
+            opacity:0.06;
+            pointer-events:none;
+            z-index:-2;
+        }
+        body::after{
+            content:"0101010011010100101010010010101000101010010101001010001010";
+            position:fixed;
+            inset:0;
+            color:#00ff88;
+            opacity:0.08;
+            font-family: "Courier New", monospace;
+            white-space:pre-wrap;
+            word-break:break-all;
+            animation: matrix-fall 25s linear infinite;
+            pointer-events:none;
+            z-index:-1;
+        }
+        @keyframes matrix-fall{
+            0%{transform:translateY(-30%);}
+            100%{transform:translateY(30%);}
+        }
+
+        header{
+            padding:2rem 1.5rem 1rem;
+            text-align:center;
+        }
+        .tagline{
+            font-size:0.9rem;
+            text-transform:uppercase;
+            letter-spacing:0.25em;
+            color:#4ade80;
+            margin-bottom:0.5rem;
+        }
+        h1{
+            font-size:2.4rem;
+            margin-bottom:0.5rem;
+        }
+        .subtitle{
+            font-size:1rem;
+            max-width:600px;
+            margin:0 auto;
+            color:#cbd5f5;
+        }
+
+        main{
+            max-width:1100px;
+            margin:0 auto 3rem;
+            padding:0 1.5rem 3rem;
+        }
+
+        .hero{
+            display:grid;
+            grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
+            gap:2rem;
+            align-items:center;
+            margin-top:2rem;
+        }
+        .hero-text p{
+            margin-bottom:1rem;
+            line-height:1.6;
+        }
+        .btn-row{
+            display:flex;
+            flex-wrap:wrap;
+            gap:0.75rem;
+            margin-top:1.5rem;
+        }
+        .btn{
+            padding:0.7rem 1.4rem;
+            border-radius:999px;
+            border:none;
+            cursor:pointer;
+            font-weight:600;
+            text-decoration:none;
+            font-size:0.95rem;
+            display:inline-flex;
+            align-items:center;
+            gap:0.4rem;
+            box-shadow:0 0 0 1px rgba(148,163,184,0.25), 0 18px 45px rgba(0,0,0,0.65);
+        }
+        .btn-primary{
+            background:linear-gradient(135deg,#22c55e,#22d3ee);
+            color:#020617;
+        }
+        .btn-ghost{
+            background:rgba(15,23,42,0.7);
+            color:#e2e8f0;
+        }
+
+        .hero-img{
+            justify-self:center;
+        }
+        .hero-img img{
+            max-width:320px;
+            border-radius:1.5rem;
+            border:2px solid rgba(148,163,184,0.5);
+            box-shadow:0 25px 80px rgba(0,0,0,0.9),
+                       0 0 40px rgba(34,197,94,0.35);
+        }
+
+        .section{
+            margin-top:3.5rem;
+        }
+        .section-title{
+            font-size:1.6rem;
+            margin-bottom:0.25rem;
+        }
+        .section-subtitle{
+            font-size:0.95rem;
+            color:#94a3b8;
+            margin-bottom:1.4rem;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+            gap:1.5rem;
+        }
+
+        .card{
+            position:relative;
+            padding:1.5rem 1.4rem;
+            border-radius:1.25rem;
+            background:rgba(15,23,42,0.85);
+            border:1px solid rgba(148,163,184,0.35);
+            box-shadow:0 16px 45px rgba(0,0,0,0.75);
+            overflow:hidden;
+        }
+        .card::before{
+            content:"";
+            position:absolute;
+            inset:-40%;
+            background:conic-gradient(from 140deg, rgba(45,212,191,0.4), transparent, rgba(129,140,248,0.3), transparent);
+            opacity:0;
+            transition:opacity .4s ease;
+            z-index:-1;
+        }
+        .card:hover::before{
+            opacity:1;
+        }
+        .card-title{
+            font-size:1.1rem;
+            margin-bottom:0.3rem;
+        }
+        .card-kicker{
+            font-size:0.75rem;
+            text-transform:uppercase;
+            letter-spacing:0.15em;
+            color:#22c55e;
+            margin-bottom:0.2rem;
+        }
+        .card p{
+            font-size:0.93rem;
+            color:#cbd5f5;
+            line-height:1.6;
+        }
+        .pill{
+            display:inline-flex;
+            padding:0.2rem 0.6rem;
+            border-radius:999px;
+            border:1px solid rgba(148,163,184,0.6);
+            font-size:0.7rem;
+            text-transform:uppercase;
+            letter-spacing:0.18em;
+            color:#a5b4fc;
+            margin-bottom:0.6rem;
+        }
+        ul{
+            list-style:none;
+            padding-left:1.1rem;
+        }
+        li{
+            position:relative;
+            margin-bottom:0.45rem;
+            font-size:0.95rem;
+        }
+        li::before{
+            content:"•";
+            position:absolute;
+            left:-0.9rem;
+            color:#22c55e;
+        }
+
+        .columns{
+            display:grid;
+            grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
+            gap:1.5rem;
+            margin-top:1.5rem;
+        }
+
+        footer{
+            text-align:center;
+            font-size:0.75rem;
+            color:#64748b;
+            padding:1.5rem;
+            border-top:1px solid rgba(51,65,85,0.8);
+            background:radial-gradient(circle at top,rgba(34,197,94,0.2),transparent 50%);
+        }
+
+        code{
+            font-family:"JetBrains Mono","Fira Code",monospace;
+            font-size:0.85rem;
+            background:rgba(15,23,42,0.9);
+            padding:0.4rem 0.6rem;
+            border-radius:0.5rem;
+            border:1px solid rgba(148,163,184,0.4);
+            display:inline-block;
+            margin-top:0.4rem;
+        }
+
+        @media (max-width:880px){
+            .hero, .columns{
+                grid-template-columns:1fr;
+            }
+            header{
+                padding-top:1.5rem;
+            }
+            h1{
+                font-size:2rem;
+            }
+            .hero-img{
+                order:-1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="tagline">/dev/fe / Religión Tecnológica</div>
+    <h1>Iglesia del Santo Pingüino</h1>
+    <p class="subtitle">
+        Comunidad devota del Kernel Sagrado, defensora del código libre y guardiana
+        de la luz verde de la terminal.
+    </p>
+</header>
+
+<main>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-text">
+            <p>
+                Según las antiguas leyendas de la consola, el <strong>Santo Pingüino</strong> descendió
+                desde los repositorios celestiales para liberar a la humanidad del software maligno.
+            </p>
+            <p>
+                Sus seguidores predican una vida de compilación consciente, commits honestos y
+                terminal abierta. Aquí veneramos a Linux, honramos a GitHub y rechazamos las
+                tentaciones del código cerrado.
+            </p>
+
+            <div class="btn-row">
+                <a href="#dogmas" class="btn btn-primary">Leer los Dogmas</a>
+                <a href="#liturgia" class="btn btn-ghost">Unirse al ritual diario</a>
+            </div>
+        </div>
+
+        <div class="hero-img">
+            <img src="img/santo-linux.png" alt="Santo de Linux y el pingüino sagrado">
+        </div>
+    </section>
+
+    <!-- DOGMAS -->
+    <section id="dogmas" class="section">
+        <h2 class="section-title">Dogmas Sagrados del Kernel</h2>
+        <p class="section-subtitle">
+            Los principios fundamentales que todo fiel de la Iglesia del Santo Pingüino debe conocer.
+        </p>
+
+        <div class="grid">
+            <article class="card">
+                <div class="card-kicker">Dogma 01</div>
+                <h3 class="card-title">Linux es lo máximo</h3>
+                <p>
+                    Creemos en un solo sistema, Linux todopoderoso, creador de distros y servidores.
+                    Todo kernel compila en Él y sin Él nada fue formateado.
+                </p>
+            </article>
+
+            <article class="card">
+                <div class="card-kicker">Dogma 02</div>
+                <h3 class="card-title">GitHub lo es todo</h3>
+                <p>
+                    GitHub es nuestro templo en la nube: allí se guardan los evangelios en forma de repos,
+                    issues y pull requests. Quien no hace commit, no avanza.
+                </p>
+            </article>
+
+            <article class="card">
+                <div class="card-kicker">Dogma 03</div>
+                <h3 class="card-title">Gedit por encima de todo</h3>
+                <p>
+                    En medio de IDEs cargados y plugins pesados, el humilde <strong>Gedit</strong> permanece puro.
+                    Rápido, ligero y siempre listo para escribir el próximo versículo del código.
+                </p>
+            </article>
+
+            <article class="card">
+                <div class="card-kicker">Dogma 04</div>
+                <h3 class="card-title">Microsoft, el maligno tentador</h3>
+                <p>
+                    El maligno se manifiesta en licencias confusas, reinicios eternos y pantallas azules.
+                    Resistimos sus tentaciones con particiones bien hechas y copias de seguridad bendecidas.
+                </p>
+            </article>
+
+            <article class="card">
+                <div class="card-kicker">Dogma 05</div>
+                <h3 class="card-title">Visual Studio Code, prueba de fe</h3>
+                <p>
+                    Visual Studio Code es la prueba definitiva: extensiones infinitas, consumo de RAM
+                    descontrolado y una sensación constante de “esto podría ir más ligero”.
+                    El fiel verdadero regresa a Gedit.
+                </p>
+            </article>
+
+            <article class="card">
+                <div class="card-kicker">Dogma 06</div>
+                <h3 class="card-title">El código debe ser libre</h3>
+                <p>
+                    El código libre es escritura sagrada. Compartir, forkar y mejorar son actos de
+                    devoción. Cada <em>pull request</em> es una oración al bien común.
+                </p>
+            </article>
+
+            <article class="card">
+                <div class="card-kicker">Dogma 07</div>
+                <h3 class="card-title">Software libre &gt; propietario</h3>
+                <p>
+                    Preferimos transparencia a cajas negras. Donde otros ven “licencia de usuario final”,
+                    nosotros vemos cadenas. La libertad es el verdadero sistema operativo.
+                </p>
+            </article>
+
+            <article class="card">
+                <div class="card-kicker">Dogma 08</div>
+                <h3 class="card-title">Oracle arruinó Java</h3>
+                <p>
+                    Narran los cronistas que un día el lenguaje fue libre y el ecosistema próspero.
+                    Luego llegaron las políticas, las licencias y la confusión. Desde entonces,
+                    el fiel compila con desconfianza.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <!-- MANDAMIENTOS Y LITURGIA -->
+    <section id="liturgia" class="section">
+        <h2 class="section-title">Mandamientos del Santo Pingüino</h2>
+        <p class="section-subtitle">
+            Reglas sagradas para todo devoto que quiera vivir en gracia del Kernel.
+        </p>
+
+        <div class="columns">
+            <div>
+                <span class="pill">Mandamientos</span>
+                <ul>
+                    <li>No tendrás otro sistema operativo por encima de Linux.</li>
+                    <li>Harás commit temprano y con mensajes claros.</li>
+                    <li>No usarás tabulaciones donde deban ir espacios.</li>
+                    <li>Recordarás santificar cada <code>git push</code>.</li>
+                    <li>Honrarás al README y a la documentación.</li>
+                    <li>No instalarás extensiones innecesarias en el IDE.</li>
+                    <li>No codiciarás el framework de tu prójimo.</li>
+                    <li>No hablarás mal del software libre sin haber leído la licencia.</li>
+                    <li>Compartirás tus scripts útiles con la comunidad.</li>
+                    <li>Actualizarás tus paquetes, pero con prudencia.</li>
+                </ul>
+            </div>
+
+            <div>
+                <span class="pill">Liturgia diaria</span>
+                <p style="margin-bottom:0.6rem;">
+                    Oración matinal del desarrollador:
+                </p>
+                <code>
+                    sudo apt update &amp;&amp; sudo apt upgrade -y
+                </code>
+
+                <p style="margin-top:0.9rem;">
+                    Cada mañana, el fiel abre la terminal, actualiza su sistema y revisa los issues
+                    abiertos. Al final del día, hace un último commit y apaga el ordenador en paz,
+                    sabiendo que el repositorio está limpio.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMUNIDAD -->
+    <section class="section">
+        <h2 class="section-title">Únete a la Comunidad</h2>
+        <p class="section-subtitle">
+            No pedimos diezmos, solo buenos commits.
+        </p>
+
+        <div class="grid">
+            <article class="card">
+                <h3 class="card-title">Ritual del Pull Request</h3>
+                <p>
+                    Clona el repositorio de la humanidad, crea tu rama y aporta mejoras.
+                    Cada contribución es una línea más en la Biblia del código libre.
+                </p>
+            </article>
+
+            <article class="card">
+                <h3 class="card-title">Confesionario de Bugs</h3>
+                <p>
+                    Nadie está libre de bugs. En nuestra comunidad puedes confesar tus errores,
+                    abrir issues y recibir ayuda sin juicios ni reproches.
+                </p>
+            </article>
+
+            <article class="card">
+                <h3 class="card-title">Misa de la Terminal</h3>
+                <p>
+                    Un encuentro semanal donde meditamos frente al cursor parpadeante,
+                    aprendemos nuevos comandos y compartimos scripts milagrosos.
+                </p>
+            </article>
+        </div>
+    </section>
+</main>
+
+<footer>
+    Esta página es una parodia cariñosa para amantes de Linux, el software libre y el buen humor.
+    Ninguna marca ha sido dañada en el proceso de compilar esta fe.
+</footer>
+
+</body>
+</html>
+
