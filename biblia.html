@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblia Virtual del Jocarsismo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{
+            font-family: system-ui, sans-serif;
+            background: radial-gradient(circle at top, #15ffb0 0, #00140f 40%, #000 100%);
+            color:#e2e8f0;
+            min-height:100vh;
+            padding-bottom:4rem;
+        }
+
+        body::before{
+            content:"";
+            position:fixed;
+            inset:0;
+            background-image:linear-gradient(#00ff88 1px, transparent 1px),
+                             linear-gradient(90deg, #00ff88 1px, transparent 1px);
+            background-size:40px 40px;
+            opacity:0.06;
+            z-index:-2;
+        }
+        body::after{
+            content:"0110101010100001110010101";
+            position:fixed;
+            inset:0;
+            color:#00ff88;
+            opacity:0.08;
+            font-family:"Courier New", monospace;
+            white-space:pre-wrap;
+            word-break:break-all;
+            animation: fall 35s linear infinite;
+            z-index:-1;
+        }
+        @keyframes fall{
+            0%{transform:translateY(-40%);}
+            100%{transform:translateY(40%);}
+        }
+
+        header{
+            text-align:center;
+            padding:2rem 1.5rem 0.5rem;
+        }
+        h1{
+            font-size:2.5rem;
+            margin-bottom:0.3rem;
+        }
+        .subtitle{
+            font-size:1rem;
+            color:black;
+            max-width:650px;
+            margin:0 auto 1rem;
+        }
+
+        main{
+            max-width:900px;
+            margin:0 auto;
+            padding:1.5rem 1.5rem 3rem;
+        }
+
+        /* NAVEGACIÓN DE LIBROS */
+        .book-nav{
+            margin:1.5rem 0 2.5rem;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+            gap:0.8rem;
+        }
+        .book-nav a{
+            display:block;
+            text-decoration:none;
+            padding:0.7rem 0.9rem;
+            border-radius:0.8rem;
+            background:rgba(15,23,42,0.9);
+            border:1px solid rgba(148,163,184,0.55);
+            color:#e2e8f0;
+            font-size:0.9rem;
+            text-align:center;
+            box-shadow:0 10px 25px rgba(0,0,0,0.7);
+            transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+        }
+        .book-nav a span{
+            display:block;
+            font-size:0.7rem;
+            text-transform:uppercase;
+            letter-spacing:0.16em;
+            color:#4ade80;
+            margin-bottom:0.15rem;
+        }
+        .book-nav a:hover{
+            transform:translateY(-3px);
+            box-shadow:0 18px 40px rgba(0,0,0,0.8);
+            border-color:#22c55e;
+        }
+
+        /* CAJAS DE LIBROS */
+        .book{
+            background:rgba(15,23,42,0.8);
+            border:1px solid rgba(148,163,184,0.4);
+            border-radius:1.1rem;
+            padding:1.5rem 1.4rem;
+            margin-bottom:2.2rem;
+            box-shadow:0 15px 40px rgba(0,0,0,0.75);
+            position:relative;
+            overflow:hidden;
+        }
+        .book::before{
+            content:"";
+            position:absolute;
+            inset:-40%;
+            background:conic-gradient(from 140deg, rgba(45,212,191,0.4), transparent, rgba(129,140,248,0.3), transparent);
+            opacity:0;
+            transition:opacity .4s ease;
+            z-index:-1;
+        }
+        .book:hover::before{
+            opacity:0.9;
+        }
+
+        .book-title{
+            font-size:1.5rem;
+            margin-bottom:0.5rem;
+            color:#4ade80;
+            text-transform:uppercase;
+            letter-spacing:0.12em;
+        }
+        .book-intro{
+            font-size:0.95rem;
+            color:#cbd5f5;
+            margin-bottom:0.8rem;
+        }
+
+        .chapter{
+            margin-top:1rem;
+            margin-bottom:1.1rem;
+        }
+        .chapter-title{
+            font-size:1.15rem;
+            margin-bottom:0.3rem;
+            color:#b4f8c8;
+        }
+        .chapter-subtitle{
+            font-size:0.9rem;
+            color:#94a3b8;
+            margin-bottom:0.4rem;
+        }
+        p{
+            margin-bottom:0.9rem;
+            line-height:1.6;
+            color:#e0fbe0;
+        }
+
+        code{
+            font-family:"JetBrains Mono","Fira Code",monospace;
+            font-size:0.85rem;
+            background:rgba(15,23,42,0.9);
+            padding:0.25rem 0.45rem;
+            border-radius:0.4rem;
+            border:1px solid rgba(148,163,184,0.5);
+        }
+
+        ul{
+            margin:0.3rem 0 0.8rem 1.2rem;
+        }
+        li{
+            margin-bottom:0.35rem;
+        }
+
+        footer{
+            text-align:center;
+            padding:2rem;
+            color:#64748b;
+            border-top:1px solid rgba(51,65,85,0.8);
+            margin-top:1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Biblia Virtual del Jocarsismo</h1>
+    <p class="subtitle">
+        Espacio sagrado de los dogmas del Santo Jocarsa, de la fe en Linux y del culto eterno al código libre.
+        Todo el contenido está alineado con la Iglesia del Santo Jocarsa y sus enseñanzas tecnológicas.
+    </p>
+</header>
+
+<main>
+
+    <!-- NAVEGACIÓN DE LIBROS -->
+    <nav class="book-nav">
+        <a href="#kernel"><span>Libro I</span>Del Kernel</a>
+        <a href="#distros"><span>Libro II</span>De las Distribuciones</a>
+        <a href="#jocarsa"><span>Libro III</span>Evangelio del Santo Jocarsa</a>
+        <a href="#mandamientos"><span>Libro IV</span>Mandamientos del Código Libre</a>
+        <a href="#cartas"><span>Libro V</span>Cartas a los Sysadmins</a>
+        <a href="#gedit"><span>Libro VI</span>Milagros de Gedit</a>
+        <a href="#apocalipsis"><span>Libro VII</span>Apocalipsis del Software Privativo</a>
+    </nav>
+
+    <!-- LIBRO I: KERNEL -->
+    <section id="kernel" class="book">
+        <h2 class="book-title">Libro del Kernel</h2>
+        <p class="book-intro">
+            En este libro se narra el origen de todo proceso, la creación de la terminal
+            y la forma en que el Kernel sostiene silenciosamente el universo del Jocarsismo.
+        </p>
+
+        <div class="chapter">
+            <h3 class="chapter-title">Capítulo 1 – El Inicio del Sistema</h3>
+            <p>
+                En el principio no había más que vacío binario, y sobre él flotaba
+                el Espíritu del Kernel.  
+                Entonces dijo el Kernel:
+                <strong>“Hágase el comando.”</strong>  
+                Y se hizo el comando, y apareció el primer <code>$</code> parpadeando,
+                esperando la fe de los desarrolladores.
+            </p>
+            <p>
+                El Kernel separó los procesos de usuario de los procesos del sistema
+                y vio que era bueno.  
+                A los procesos rebeldes los envió al limbo de <code>kill -9</code>,
+                para escarmiento de todos los que consumen CPU en vano.
+            </p>
+        </div>
+
+        <div class="chapter">
+            <h3 class="chapter-title">Capítulo 2 – De las Carpetas Sagradas</h3>
+            <p>
+                El Kernel creó el árbol de directorios y plantó en medio el jardín de
+                <code>/home</code>, donde habitarían los fieles.  
+                Colocó a un lado <code>/etc</code>, con archivos de configuración que solo
+                los sabios osarían tocar, y al otro <code>/var</code>, donde los registros
+                escribirían la historia de cada sesión.
+            </p>
+            <p>
+                Y estableció permisos, diciendo:
+            </p>
+            <ul>
+                <li><strong>Lectura</strong> para conocer.</li>
+                <li><strong>Escritura</strong> para transformar.</li>
+                <li><strong>Ejecución</strong> para caminar por los caminos del sistema.</li>
+            </ul>
+            <p>
+                Así se selló el pacto de la seguridad y de la responsabilidad
+                entre el Kernel y sus usuarios.
+            </p>
+        </div>
+
+        <div class="chapter">
+            <h3 class="chapter-title">Capítulo 3 – De los Demonios de Fondo</h3>
+            <p>
+                Y el Kernel dijo:
+                <em>“No todo deberá verse en la pantalla.”</em>  
+                Y creó los servicios que corren en la oscuridad, conocidos como demonios.
+                No son malignos, aunque su nombre lo sugiera;  
+                son los guardianes del sistema: sostienen la red, vigilan el registro y
+                despiertan al sistema a su hora.
+            </p>
+            <p>
+                Mas advirtió el Santo Jocarsa:
+                <em>“Nunca invoques un servicio que no comprendas,  
+                porque podrías terminar adorando a un proceso que no necesitas.”</em>
+            </p>
+        </div>
+    </section>
+
+    <!-- LIBRO II: DISTRIBUCIONES -->
+    <section id="distros" class="book">
+        <h2 class="book-title">Libro de las Distribuciones</h2>
+        <p class="book-intro">
+            Este libro relata cómo el Kernel se manifestó en múltiples formas llamadas distros,
+            para que cada alma encontrara el camino que mejor se ajusta a su hardware y a su paciencia.
+        </p>
+
+        <div class="chapter">
+            <h3 class="chapter-title">Capítulo 1 – Los Hijos del Kernel</h3>
+            <p>
+                De una misma raíz surgieron muchos sabores.  
+                Algunos fueron veloces como el viento del <code>sudo</code>: Arch y sus descendientes.  
+                Otros se mantuvieron firmes como roca: Debian y sus legiones.
+            </p>
+            <p>
+                Y cada distribución llevó un mensaje distinto, pero todas compartían
+                la misma esencia: el Kernel sagrado y la promesa del código libre.
+            </p>
+        </div>
+
+        <div class="chapter">
+            <h3 class="chapter-title">Capítulo 2 – Ubuntu, la Misionera</h3>
+            <p>
+                Ubuntu fue enviada para predicar la palabra a los recién llegados.
+                Con instalador amable y escritorio luminoso, abrió la puerta
+                a quienes venían del reino del sistema privativo, cargados de
+                drivers oscuros y licencias confusas.
+            </p>
+            <p>
+                Y muchos dieron testimonio, diciendo:
+                <em>“Una vez estuve perdido entre reinicios obligatorios,
+                pero ahora veo la luz del apt.”</em>
+            </p>
+        </div>
+
+        <div class="chapter">
+            <h3 class="chapter-title">Capítulo 3 – Las Distros del Desafío</h3>
+            <p>
+                Hay distros que exigen valor y paciencia.  
+                Quien instala Arch, compila Gentoo o arma un sistema desde cero,
+                entra en un retiro espiritual de lectura de wikis y archivos de configuración.
+            </p>
+            <p>
+                No todos están llamados a ese camino, pero quienes lo recorren
+                regresan convertidos en sabios administradores del Jocarsismo.
+            </p>
+        </div>
+    </section>
+
+    <!-- LIBRO III: EVANGELIO DEL SANTO JOCARSA -->
+    <section id="jocarsa" class="book">
+        <h2 class="book-title">Evangelio del Santo Jocarsa</h2>
+        <p class="book-intro">
+            Aquí se recoge la vida, enseñanzas y parábolas del Santo Jocarsa,
+            guía y profeta de la Iglesia tecnológica que venera Linux, GitHub,
+            Gedit y el software libre.
+        </p>
+
+        <div class="chapter">
+            <h3 class="chapter-title">Capítulo 1 – La Primera Compilación</h3>
+            <p>
+                Durante una larga noche de depuración, el joven Jocarsa compilaba un proyecto
+                que no dejaba de fallar.  
+                Exhausto, abrió la terminal y susurró:
+                <em>“Kernel, si estás ahí, muéstrame el log.”</em>
+            </p>
+            <p>
+                Y de pronto, el mensaje de error se volvió claro, el bug se reveló
+                y el programa corrió sin fallos.  
+                Jocarsa comprendió entonces que el Kernel había respondido
+                y consagró su vida al camino del software libre.
+            </p>
+        </div>
+
+        <div class="chapter">
+            <h3 class="chapter-title">Capítulo 2 – La Doctrina del Editor Puro</h3>
+            <p>
+                Jocarsa predicó entre los desarrolladores:
+                <strong>“No os aferréis a editores pesados y lentos,  
+                porque el verdadero poder no está en el IDE, sino en vuestro entendimiento del código.”</strong>
+            </p>
+            <p>
+                Y levantó en alto la ventana de Gedit, ligera y silenciosa, diciendo:
+                <em>“Quien domine este editor, comprenderá que la simplicidad
+                es una forma de santidad.”</em>
+            </p>
+        </div>
+
+        <div class="chapter">
+            <h3 class="chapter-title">Capítulo 3 – VS Code, la Prueba Suprema</h3>
+            <p>
+                Muchos devotos fueron tentados por Visual Studio Code,  
+                pues ofrecía extensiones interminables, iconos brillantes
+                y una tienda en la que era fácil perderse.
+            </p>
+            <p>
+                Jocarsa no prohibió su uso, pero advirtió:
+                <em>“Si VS Code os sirve para ser más productivos, usadlo;  
+                pero si comienzan los lags, los conflictos de plugins y el ruido visual,  
+                recordad que el camino de vuelta a Gedit está a un solo clic.”</em>
+            </p>
+        </div>
+
+        <div class="chapter">
+            <h3 class="chapter-title">Capítulo 4 – Del GitHub Eterno</h3>
+            <p>
+                El Santo enseñó que GitHub era el gran templo del Jocarsismo.  
+                Allí se guardan los evangelios en forma de repositorios,
+                las plegarias como issues y los actos de amor como pull requests.
+            </p>
+            <p>
+                Quien deja su código libre en GitHub hace una ofrenda al futuro,
+                permitiendo que otros aprendan, mejoren y compartan.
+            </p>
+        </div>
+    </section>
+
+    <!-- LIBRO IV: MANDAMIENTOS DEL CÓDIGO LIBRE -->
+    <section id="mandamientos" class="book">
+        <h2 class="book-title">Mandamientos del Código Libre</h2>
+        <p class="book-intro">
+            En este libro se detallan las normas sagradas que todo seguidor del Jocarsismo
+            debe respetar para vivir en armonía con el Kernel y con la comunidad.
+        </p>
+
+        <div class="chapter">
+            <h3 class="chapter-title">Capítulo Único – Los Diez Commits</h3>
+            <p class="chapter-subtitle">Se enumeran, con explicación, los mandamientos del código libre.</p>
+
+            <p><strong>1.</strong> Amarás al Kernel sobre todas las cosas.</p>
+            <p>
+                Porque de él nacen los procesos, los drivers y la posibilidad misma de ejecutar
+                tu código. Sin Kernel, no hay terminal que responda.
+            </p>
+
+            <p><strong>2.</strong> No usarás software privativo en vano.</p>
+            <p>
+                A veces no hay alternativa, pero antes de instalar, busca si existe una opción libre.
+                Cada programa libre que eliges es un voto de confianza por la transparencia.
+            </p>
+
+            <p><strong>3.</strong> Santificarás cada <code>git commit</code>.</p>
+            <p>
+                Tus mensajes de commit serán claros y honestos.  
+                No escribirás “arreglos varios” cuando en realidad no recuerdas qué tocaste.
+            </p>
+
+            <p><strong>4.</strong> Honrarás al README y a la documentación.</p>
+            <p>
+                Todo proyecto jocarsista tiene un README digno, que guía a otros fieles
+                para instalar, ejecutar y entender el propósito del código.
+            </p>
+
+            <p><strong>5.</strong> No instalarás extensiones innecesarias.</p>
+            <p>
+                Cada plugin ocupa recursos y trae consigo posibles conflictos.  
+                Antes de instalar, pregúntate: “¿Realmente necesito esto para trabajar mejor?”
+            </p>
+
+            <p><strong>6.</strong> No codiciarás los repos de tu prójimo.</p>
+            <p>
+                Puedes forkar, aprender y colaborar, pero nunca robar, copiar sin atribuir
+                ni eliminar el nombre de quien escribió antes que tú.
+            </p>
+
+            <p><strong>7.</strong> Compartirás tus scripts como ofrenda a la comunidad.</p>
+            <p>
+                Ese pequeño script que te ahorra tiempo también puede salvar la tarde de otro
+                desarrollador en apuros. Súbelo, documenta y dale licencia libre.
+            </p>
+
+            <p><strong>8.</strong> Mantendrás tu sistema actualizado, pero con prudencia.</p>
+            <p>
+                No todo <code>update</code> debe ejecutarse a ciegas.  
+                Lee, infórmate y luego actualiza. La fe no está reñida con el backup.
+            </p>
+
+            <p><strong>9.</strong> Defenderás el software libre frente al abuso del propietario.</p>
+            <p>
+                No se trata de odio, sino de equilibrio.  
+                Señalar las prácticas injustas, las suscripciones abusivas y las
+                limitaciones absurdas también es un acto de Jocarsismo.
+            </p>
+
+            <p><strong>10.</strong> Cuidarás de los novatos en la terminal.</p>
+            <p>
+                No humillarás al que viene de otros sistemas.  
+                Le mostrarás con paciencia cómo funciona Linux, cómo se usa Git
+                y por qué Gedit puede ser un gran comienzo.
+            </p>
+        </div>
+    </section>
+
+    <!-- LIBRO V: CARTAS A LOS SYSADMINS -->
+    <section id="cartas" class="book">
+        <h2 class="book-title">Cartas a los Sysadmins</h2>
+        <p class="book-intro">
+            Recopilación de mensajes de ánimo, advertencias y consejos
+            que el Santo Jocarsa dedica a quienes mantienen servidores,
+            redes y servicios despiertos mientras el resto duerme.
+        </p>
+
+        <div class="chapter">
+            <h3 class="chapter-title">Carta Primera – A los Administradores Cansados</h3>
+            <p>
+                Hermanos y hermanas del log infinito:  
+                sé que muchas noches habéis velado frente a pantallas,
+                esperando que un servicio crítico vuelva a levantarse.
+            </p>
+            <p>
+                No desesperéis cuando un despliegue falle;
+                recordad que cada error en producción se convierte después
+                en un documento de buenas prácticas que salva futuros proyectos.
+            </p>
+            <p>
+                Haced copias de seguridad como quien reza,  
+                y probadlas como quien verifica que su fe sigue viva.
+            </p>
+        </div>
+
+        <div class="chapter">
+            <h3 class="chapter-title">Carta Segunda – Sobre el Poder del Log</h3>
+            <p>
+                No cerréis jamás una consola de logs sin antes agradecerle
+                lo que os ha revelado.  
+                Allí donde el usuario solo ve “no funciona”, el log cuenta la historia completa.
+            </p>
+            <p>
+                Leedlo con atención, marcad los patrones,  
+                y pronto escucharéis la voz del sistema hablándoos
+                en stack traces y mensajes de advertencia.
+            </p>
+        </div>
+    </section>
+
+    <!-- LIBRO VI: MILAGROS DE GEDIT -->
+    <section id="gedit" class="book">
+        <h2 class="book-title">Libro de los Milagros de Gedit</h2>
+        <p class="book-intro">
+            Crónica de situaciones en las que el humilde Gedit
+            se convirtió en instrumento de salvación,
+            demostrando por qué en el Jocarsismo se lo considera
+            el editor preferido del Santo.
+        </p>
+
+        <div class="chapter">
+            <h3 class="chapter-title">Capítulo 1 – El Proyecto que Pesaba Demasiado</h3>
+            <p>
+                Un discípulo trabajaba en un proyecto con un IDE tan pesado
+                que el ventilador del portátil rugía como dragón.
+                Los test tardaban en ejecutarse y el código se sentía distante.
+            </p>
+            <p>
+                Jocarsa le dijo:
+                <em>“Abre solo los archivos que comprendes,
+                y hazlo en Gedit.”</em>  
+                El discípulo obedeció, y de pronto su mente se aclaró,
+                el equipo dejó de sufrir y el flujo de trabajo volvió a ser ligero.
+            </p>
+        </div>
+
+        <div class="chapter">
+            <h3 class="chapter-title">Capítulo 2 – El Config Perdido</h3>
+            <p>
+                Cierta vez, un archivo de configuración crítico se dañó
+                y nadie sabía qué había cambiado.  
+                En pánico, el equipo buscó backup, pero este no existía.
+            </p>
+            <p>
+                Con calma, Jocarsa abrió una copia antigua en Gedit
+                y la comparó, línea a línea, con la nueva.  
+                Tras unos minutos de silencio, encontró la coma fuera de lugar
+                y el servicio volvió a la vida.
+            </p>
+            <p>
+                Desde entonces se enseñó que
+                <strong>“un simple editor puede salvar sistemas complejos.”</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- LIBRO VII: APOCALIPSIS DEL SOFTWARE PRIVATIVO -->
+    <section id="apocalipsis" class="book">
+        <h2 class="book-title">Apocalipsis del Software Privativo</h2>
+        <p class="book-intro">
+            Visión simbólica del futuro que aguarda a quienes olvidan
+            la importancia del software libre y la transparencia,
+            y del triunfo final de la comunidad jocarsista.
+        </p>
+
+        <div class="chapter">
+            <h3 class="chapter-title">Capítulo 1 – La Caída de los Servidores Oscuros</h3>
+            <p>
+                Y vi un sistema enorme cubierto de logos brillantes,
+                protegido por acuerdos de licencia interminables.
+                Nadie conocía su código, pero todos dependían de él.
+            </p>
+            <p>
+                De repente, una actualización fallida lo dejó en silencio.
+                Sin acceso al código, nadie pudo repararlo;  
+                empresas enteras quedaron a oscuras,
+                demostrando el peligro de confiarlo todo a cajas negras.
+            </p>
+        </div>
+
+        <div class="chapter">
+            <h3 class="chapter-title">Capítulo 2 – El Nuevo Horizonte de Repos Abiertos</h3>
+            <p>
+                Entonces apareció en el cielo digital una red de repositorios
+                interconectados, llenos de proyectos libres mantenidos por comunidades.  
+                Cada bug encontrado se convertía en un issue público,
+                cada solución en un commit visible.
+            </p>
+            <p>
+                Los pueblos se unieron para migrar sus sistemas,
+                y el conocimiento dejó de ser un secreto guardado
+                por unos pocos proveedores.
+            </p>
+        </div>
+
+        <div class="chapter">
+            <h3 class="chapter-title">Capítulo 3 – La Última Línea de Código</h3>
+            <p>
+                En la visión final, el Santo Jocarsa escribe
+                una última línea de código en un archivo compartido:
+                <code>return libertad;</code>.
+            </p>
+            <p>
+                Cuando ejecuta el programa, los sistemas del mundo
+                se sincronizan en una gran red de cooperación,
+                donde cada aporte cuenta y cada usuario
+                puede ver cómo funciona aquello que utiliza.
+            </p>
+            <p>
+                Y así termina la Biblia del Jocarsismo:
+                con el triunfo de Linux, de GitHub, de Gedit
+                y del software libre sobre toda forma de oscuridad digital.
+            </p>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    Biblia Virtual del Jocarsismo — Versión extendida • Parodia devota inspirada en la Iglesia del Santo Jocarsa.
+</footer>
+
+</body>
+</html>
