@@ -32,9 +32,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: url('../cursor_pinguino.ani'),
-            url('https://cur.cursors-4u.net/nature/nat-5/nat431.png'),
-            auto !important;
 }
 
 html {
