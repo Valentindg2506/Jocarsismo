@@ -4,185 +4,34 @@
     <meta charset="UTF-8">
     <title>Biblia Virtual del Jocarsismo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box;}
-        body{
-            font-family: system-ui, sans-serif;
-            background: radial-gradient(circle at top, #15ffb0 0, #00140f 40%, #000 100%);
-            color:#e2e8f0;
-            min-height:100vh;
-            padding-bottom:4rem;
-        }
-
-        body::before{
-            content:"";
-            position:fixed;
-            inset:0;
-            background-image:linear-gradient(#00ff88 1px, transparent 1px),
-                             linear-gradient(90deg, #00ff88 1px, transparent 1px);
-            background-size:40px 40px;
-            opacity:0.06;
-            z-index:-2;
-        }
-        body::after{
-            content:"0110101010100001110010101";
-            position:fixed;
-            inset:0;
-            color:#00ff88;
-            opacity:0.08;
-            font-family:"Courier New", monospace;
-            white-space:pre-wrap;
-            word-break:break-all;
-            animation: fall 35s linear infinite;
-            z-index:-1;
-        }
-        @keyframes fall{
-            0%{transform:translateY(-40%);}
-            100%{transform:translateY(40%);}
-        }
-
-        header{
-            text-align:center;
-            padding:2rem 1.5rem 0.5rem;
-        }
-        h1{
-            font-size:2.5rem;
-            margin-bottom:0.3rem;
-        }
-        .subtitle{
-            font-size:1rem;
-            color:black;
-            max-width:650px;
-            margin:0 auto 1rem;
-        }
-
-        main{
-            max-width:900px;
-            margin:0 auto;
-            padding:1.5rem 1.5rem 3rem;
-        }
-
-        /* NAVEGACIÓN DE LIBROS */
-        .book-nav{
-            margin:1.5rem 0 2.5rem;
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-            gap:0.8rem;
-        }
-        .book-nav a{
-            display:block;
-            text-decoration:none;
-            padding:0.7rem 0.9rem;
-            border-radius:0.8rem;
-            background:rgba(15,23,42,0.9);
-            border:1px solid rgba(148,163,184,0.55);
-            color:#e2e8f0;
-            font-size:0.9rem;
-            text-align:center;
-            box-shadow:0 10px 25px rgba(0,0,0,0.7);
-            transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-        }
-        .book-nav a span{
-            display:block;
-            font-size:0.7rem;
-            text-transform:uppercase;
-            letter-spacing:0.16em;
-            color:#4ade80;
-            margin-bottom:0.15rem;
-        }
-        .book-nav a:hover{
-            transform:translateY(-3px);
-            box-shadow:0 18px 40px rgba(0,0,0,0.8);
-            border-color:#22c55e;
-        }
-
-        /* CAJAS DE LIBROS */
-        .book{
-            background:rgba(15,23,42,0.8);
-            border:1px solid rgba(148,163,184,0.4);
-            border-radius:1.1rem;
-            padding:1.5rem 1.4rem;
-            margin-bottom:2.2rem;
-            box-shadow:0 15px 40px rgba(0,0,0,0.75);
-            position:relative;
-            overflow:hidden;
-        }
-        .book::before{
-            content:"";
-            position:absolute;
-            inset:-40%;
-            background:conic-gradient(from 140deg, rgba(45,212,191,0.4), transparent, rgba(129,140,248,0.3), transparent);
-            opacity:0;
-            transition:opacity .4s ease;
-            z-index:-1;
-        }
-        .book:hover::before{
-            opacity:0.9;
-        }
-
-        .book-title{
-            font-size:1.5rem;
-            margin-bottom:0.5rem;
-            color:#4ade80;
-            text-transform:uppercase;
-            letter-spacing:0.12em;
-        }
-        .book-intro{
-            font-size:0.95rem;
-            color:#cbd5f5;
-            margin-bottom:0.8rem;
-        }
-
-        .chapter{
-            margin-top:1rem;
-            margin-bottom:1.1rem;
-        }
-        .chapter-title{
-            font-size:1.15rem;
-            margin-bottom:0.3rem;
-            color:#b4f8c8;
-        }
-        .chapter-subtitle{
-            font-size:0.9rem;
-            color:#94a3b8;
-            margin-bottom:0.4rem;
-        }
-        p{
-            margin-bottom:0.9rem;
-            line-height:1.6;
-            color:#e0fbe0;
-        }
-
-        code{
-            font-family:"JetBrains Mono","Fira Code",monospace;
-            font-size:0.85rem;
-            background:rgba(15,23,42,0.9);
-            padding:0.25rem 0.45rem;
-            border-radius:0.4rem;
-            border:1px solid rgba(148,163,184,0.5);
-        }
-
-        ul{
-            margin:0.3rem 0 0.8rem 1.2rem;
-        }
-        li{
-            margin-bottom:0.35rem;
-        }
-
-        footer{
-            text-align:center;
-            padding:2rem;
-            color:#64748b;
-            border-top:1px solid rgba(51,65,85,0.8);
-            margin-top:1rem;
-        }
-    </style>
+    <meta name="description" content="Biblia Virtual del Jocarsismo: 7 libros sagrados sobre Linux, distribuciones, el Santo Jocarsa, mandamientos del código libre y el apocalipsis del software privativo.">
+    <meta name="theme-color" content="#001111">
+    <meta property="og:title" content="Biblia Virtual del Jocarsismo">
+    <meta property="og:description" content="7 libros del Jocarsismo: Kernel, Distribuciones, Evangelio, Mandamientos, Cartas, Milagros de Gedit y Apocalipsis.">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
+<!-- BARRA DE PROGRESO DE LECTURA -->
+<div id="reading-progress" class="reading-progress-bar" role="progressbar" aria-label="Progreso de lectura" aria-valuemin="0" aria-valuemax="100"></div>
+
+<!-- NAV STICKY DE LIBROS -->
+<nav class="book-nav-sticky" aria-label="Navegación de libros">
+    <a href="#kernel">I · Kernel</a>
+    <a href="#distros">II · Distros</a>
+    <a href="#jocarsa">III · Jocarsa</a>
+    <a href="#mandamientos">IV · Mandamientos</a>
+    <a href="#cartas">V · Cartas</a>
+    <a href="#gedit">VI · Gedit</a>
+    <a href="#apocalipsis">VII · Apocalipsis</a>
+</nav>
+
 <header>
+    <nav style="margin-bottom:0.6rem;">
+        <a href="index.html" class="back-to-temple">← Volver al Templo</a>
+    </nav>
     <h1>Biblia Virtual del Jocarsismo</h1>
     <p class="subtitle">
         Espacio sagrado de los dogmas del Santo Jocarsa, de la fe en Linux y del culto eterno al código libre.
@@ -192,7 +41,7 @@
 
 <main>
 
-    <!-- NAVEGACIÓN DE LIBROS -->
+    <!-- NAVEGACIÓN DE LIBROS (grid visual) -->
     <nav class="book-nav">
         <a href="#kernel"><span>Libro I</span>Del Kernel</a>
         <a href="#distros"><span>Libro II</span>De las Distribuciones</a>
@@ -204,36 +53,36 @@
     </nav>
 
     <!-- LIBRO I: KERNEL -->
-    <section id="kernel" class="book">
+    <section id="kernel" class="book reveal">
         <h2 class="book-title">Libro del Kernel</h2>
         <p class="book-intro">
             En este libro se narra el origen de todo proceso, la creación de la terminal
             y la forma en que el Kernel sostiene silenciosamente el universo del Jocarsismo.
         </p>
 
-        <div class="chapter">
+        <div class="chapter reveal">
             <h3 class="chapter-title">Capítulo 1 – El Inicio del Sistema</h3>
             <p>
                 En el principio no había más que vacío binario, y sobre él flotaba
-                el Espíritu del Kernel.  
+                el Espíritu del Kernel.
                 Entonces dijo el Kernel:
-                <strong>“Hágase el comando.”</strong>  
+                <strong>"Hágase el comando."</strong>
                 Y se hizo el comando, y apareció el primer <code>$</code> parpadeando,
                 esperando la fe de los desarrolladores.
             </p>
             <p>
                 El Kernel separó los procesos de usuario de los procesos del sistema
-                y vio que era bueno.  
+                y vio que era bueno.
                 A los procesos rebeldes los envió al limbo de <code>kill -9</code>,
                 para escarmiento de todos los que consumen CPU en vano.
             </p>
         </div>
 
-        <div class="chapter">
+        <div class="chapter reveal">
             <h3 class="chapter-title">Capítulo 2 – De las Carpetas Sagradas</h3>
             <p>
                 El Kernel creó el árbol de directorios y plantó en medio el jardín de
-                <code>/home</code>, donde habitarían los fieles.  
+                <code>/home</code>, donde habitarían los fieles.
                 Colocó a un lado <code>/etc</code>, con archivos de configuración que solo
                 los sabios osarían tocar, y al otro <code>/var</code>, donde los registros
                 escribirían la historia de cada sesión.
@@ -252,37 +101,41 @@
             </p>
         </div>
 
-        <div class="chapter">
+        <div class="chapter reveal">
             <h3 class="chapter-title">Capítulo 3 – De los Demonios de Fondo</h3>
             <p>
                 Y el Kernel dijo:
-                <em>“No todo deberá verse en la pantalla.”</em>  
+                <em>"No todo deberá verse en la pantalla."</em>
                 Y creó los servicios que corren en la oscuridad, conocidos como demonios.
-                No son malignos, aunque su nombre lo sugiera;  
+                No son malignos, aunque su nombre lo sugiera;
                 son los guardianes del sistema: sostienen la red, vigilan el registro y
                 despiertan al sistema a su hora.
             </p>
             <p>
                 Mas advirtió el Santo Jocarsa:
-                <em>“Nunca invoques un servicio que no comprendas,  
-                porque podrías terminar adorando a un proceso que no necesitas.”</em>
+                <em>"Nunca invoques un servicio que no comprendas,
+                porque podrías terminar adorando a un proceso que no necesitas."</em>
             </p>
+        </div>
+        <div class="amen-wrap">
+            <span class="amen-count" id="amen-kernel">0</span> amenes
+            <button class="amen-btn" data-book="kernel" aria-label="Amén al Libro del Kernel">🙌 Amén</button>
         </div>
     </section>
 
     <!-- LIBRO II: DISTRIBUCIONES -->
-    <section id="distros" class="book">
+    <section id="distros" class="book reveal">
         <h2 class="book-title">Libro de las Distribuciones</h2>
         <p class="book-intro">
             Este libro relata cómo el Kernel se manifestó en múltiples formas llamadas distros,
             para que cada alma encontrara el camino que mejor se ajusta a su hardware y a su paciencia.
         </p>
 
-        <div class="chapter">
+        <div class="chapter reveal">
             <h3 class="chapter-title">Capítulo 1 – Los Hijos del Kernel</h3>
             <p>
-                De una misma raíz surgieron muchos sabores.  
-                Algunos fueron veloces como el viento del <code>sudo</code>: Arch y sus descendientes.  
+                De una misma raíz surgieron muchos sabores.
+                Algunos fueron veloces como el viento del <code>sudo</code>: Arch y sus descendientes.
                 Otros se mantuvieron firmes como roca: Debian y sus legiones.
             </p>
             <p>
@@ -291,7 +144,7 @@
             </p>
         </div>
 
-        <div class="chapter">
+        <div class="chapter reveal">
             <h3 class="chapter-title">Capítulo 2 – Ubuntu, la Misionera</h3>
             <p>
                 Ubuntu fue enviada para predicar la palabra a los recién llegados.
@@ -301,15 +154,15 @@
             </p>
             <p>
                 Y muchos dieron testimonio, diciendo:
-                <em>“Una vez estuve perdido entre reinicios obligatorios,
-                pero ahora veo la luz del apt.”</em>
+                <em>"Una vez estuve perdido entre reinicios obligatorios,
+                pero ahora veo la luz del apt."</em>
             </p>
         </div>
 
-        <div class="chapter">
+        <div class="chapter reveal">
             <h3 class="chapter-title">Capítulo 3 – Las Distros del Desafío</h3>
             <p>
-                Hay distros que exigen valor y paciencia.  
+                Hay distros que exigen valor y paciencia.
                 Quien instala Arch, compila Gentoo o arma un sistema desde cero,
                 entra en un retiro espiritual de lectura de wikis y archivos de configuración.
             </p>
@@ -318,10 +171,14 @@
                 regresan convertidos en sabios administradores del Jocarsismo.
             </p>
         </div>
+        <div class="amen-wrap">
+            <span class="amen-count" id="amen-distros">0</span> amenes
+            <button class="amen-btn" data-book="distros" aria-label="Amén al Libro de las Distribuciones">🙌 Amén</button>
+        </div>
     </section>
 
     <!-- LIBRO III: EVANGELIO DEL SANTO JOCARSA -->
-    <section id="jocarsa" class="book">
+    <section id="jocarsa" class="book reveal">
         <h2 class="book-title">Evangelio del Santo Jocarsa</h2>
         <p class="book-intro">
             Aquí se recoge la vida, enseñanzas y parábolas del Santo Jocarsa,
@@ -329,55 +186,55 @@
             Gedit y el software libre.
         </p>
 
-        <div class="chapter">
+        <div class="chapter reveal">
             <h3 class="chapter-title">Capítulo 1 – La Primera Compilación</h3>
             <p>
                 Durante una larga noche de depuración, el joven Jocarsa compilaba un proyecto
-                que no dejaba de fallar.  
+                que no dejaba de fallar.
                 Exhausto, abrió la terminal y susurró:
-                <em>“Kernel, si estás ahí, muéstrame el log.”</em>
+                <em>"Kernel, si estás ahí, muéstrame el log."</em>
             </p>
             <p>
                 Y de pronto, el mensaje de error se volvió claro, el bug se reveló
-                y el programa corrió sin fallos.  
+                y el programa corrió sin fallos.
                 Jocarsa comprendió entonces que el Kernel había respondido
                 y consagró su vida al camino del software libre.
             </p>
         </div>
 
-        <div class="chapter">
+        <div class="chapter reveal">
             <h3 class="chapter-title">Capítulo 2 – La Doctrina del Editor Puro</h3>
             <p>
                 Jocarsa predicó entre los desarrolladores:
-                <strong>“No os aferréis a editores pesados y lentos,  
-                porque el verdadero poder no está en el IDE, sino en vuestro entendimiento del código.”</strong>
+                <strong>"No os aferréis a editores pesados y lentos,
+                porque el verdadero poder no está en el IDE, sino en vuestro entendimiento del código."</strong>
             </p>
             <p>
                 Y levantó en alto la ventana de Gedit, ligera y silenciosa, diciendo:
-                <em>“Quien domine este editor, comprenderá que la simplicidad
-                es una forma de santidad.”</em>
+                <em>"Quien domine este editor, comprenderá que la simplicidad
+                es una forma de santidad."</em>
             </p>
         </div>
 
-        <div class="chapter">
+        <div class="chapter reveal">
             <h3 class="chapter-title">Capítulo 3 – VS Code, la Prueba Suprema</h3>
             <p>
-                Muchos devotos fueron tentados por Visual Studio Code,  
+                Muchos devotos fueron tentados por Visual Studio Code,
                 pues ofrecía extensiones interminables, iconos brillantes
                 y una tienda en la que era fácil perderse.
             </p>
             <p>
                 Jocarsa no prohibió su uso, pero advirtió:
-                <em>“Si VS Code os sirve para ser más productivos, usadlo;  
-                pero si comienzan los lags, los conflictos de plugins y el ruido visual,  
-                recordad que el camino de vuelta a Gedit está a un solo clic.”</em>
+                <em>"Si VS Code os sirve para ser más productivos, usadlo;
+                pero si comienzan los lags, los conflictos de plugins y el ruido visual,
+                recordad que el camino de vuelta a Gedit está a un solo clic."</em>
             </p>
         </div>
 
-        <div class="chapter">
+        <div class="chapter reveal">
             <h3 class="chapter-title">Capítulo 4 – Del GitHub Eterno</h3>
             <p>
-                El Santo enseñó que GitHub era el gran templo del Jocarsismo.  
+                El Santo enseñó que GitHub era el gran templo del Jocarsismo.
                 Allí se guardan los evangelios en forma de repositorios,
                 las plegarias como issues y los actos de amor como pull requests.
             </p>
@@ -386,17 +243,21 @@
                 permitiendo que otros aprendan, mejoren y compartan.
             </p>
         </div>
+        <div class="amen-wrap">
+            <span class="amen-count" id="amen-jocarsa">0</span> amenes
+            <button class="amen-btn" data-book="jocarsa" aria-label="Amén al Evangelio del Santo Jocarsa">🙌 Amén</button>
+        </div>
     </section>
 
     <!-- LIBRO IV: MANDAMIENTOS DEL CÓDIGO LIBRE -->
-    <section id="mandamientos" class="book">
+    <section id="mandamientos" class="book reveal">
         <h2 class="book-title">Mandamientos del Código Libre</h2>
         <p class="book-intro">
             En este libro se detallan las normas sagradas que todo seguidor del Jocarsismo
             debe respetar para vivir en armonía con el Kernel y con la comunidad.
         </p>
 
-        <div class="chapter">
+        <div class="chapter reveal">
             <h3 class="chapter-title">Capítulo Único – Los Diez Commits</h3>
             <p class="chapter-subtitle">Se enumeran, con explicación, los mandamientos del código libre.</p>
 
@@ -414,8 +275,8 @@
 
             <p><strong>3.</strong> Santificarás cada <code>git commit</code>.</p>
             <p>
-                Tus mensajes de commit serán claros y honestos.  
-                No escribirás “arreglos varios” cuando en realidad no recuerdas qué tocaste.
+                Tus mensajes de commit serán claros y honestos.
+                No escribirás "arreglos varios" cuando en realidad no recuerdas qué tocaste.
             </p>
 
             <p><strong>4.</strong> Honrarás al README y a la documentación.</p>
@@ -426,8 +287,8 @@
 
             <p><strong>5.</strong> No instalarás extensiones innecesarias.</p>
             <p>
-                Cada plugin ocupa recursos y trae consigo posibles conflictos.  
-                Antes de instalar, pregúntate: “¿Realmente necesito esto para trabajar mejor?”
+                Cada plugin ocupa recursos y trae consigo posibles conflictos.
+                Antes de instalar, pregúntate: "¿Realmente necesito esto para trabajar mejor?"
             </p>
 
             <p><strong>6.</strong> No codiciarás los repos de tu prójimo.</p>
@@ -444,28 +305,32 @@
 
             <p><strong>8.</strong> Mantendrás tu sistema actualizado, pero con prudencia.</p>
             <p>
-                No todo <code>update</code> debe ejecutarse a ciegas.  
+                No todo <code>update</code> debe ejecutarse a ciegas.
                 Lee, infórmate y luego actualiza. La fe no está reñida con el backup.
             </p>
 
             <p><strong>9.</strong> Defenderás el software libre frente al abuso del propietario.</p>
             <p>
-                No se trata de odio, sino de equilibrio.  
+                No se trata de odio, sino de equilibrio.
                 Señalar las prácticas injustas, las suscripciones abusivas y las
                 limitaciones absurdas también es un acto de Jocarsismo.
             </p>
 
             <p><strong>10.</strong> Cuidarás de los novatos en la terminal.</p>
             <p>
-                No humillarás al que viene de otros sistemas.  
+                No humillarás al que viene de otros sistemas.
                 Le mostrarás con paciencia cómo funciona Linux, cómo se usa Git
                 y por qué Gedit puede ser un gran comienzo.
             </p>
         </div>
+        <div class="amen-wrap">
+            <span class="amen-count" id="amen-mandamientos">0</span> amenes
+            <button class="amen-btn" data-book="mandamientos" aria-label="Amén a los Mandamientos del Código Libre">🙌 Amén</button>
+        </div>
     </section>
 
     <!-- LIBRO V: CARTAS A LOS SYSADMINS -->
-    <section id="cartas" class="book">
+    <section id="cartas" class="book reveal">
         <h2 class="book-title">Cartas a los Sysadmins</h2>
         <p class="book-intro">
             Recopilación de mensajes de ánimo, advertencias y consejos
@@ -473,10 +338,10 @@
             redes y servicios despiertos mientras el resto duerme.
         </p>
 
-        <div class="chapter">
+        <div class="chapter reveal">
             <h3 class="chapter-title">Carta Primera – A los Administradores Cansados</h3>
             <p>
-                Hermanos y hermanas del log infinito:  
+                Hermanos y hermanas del log infinito:
                 sé que muchas noches habéis velado frente a pantallas,
                 esperando que un servicio crítico vuelva a levantarse.
             </p>
@@ -486,28 +351,32 @@
                 en un documento de buenas prácticas que salva futuros proyectos.
             </p>
             <p>
-                Haced copias de seguridad como quien reza,  
+                Haced copias de seguridad como quien reza,
                 y probadlas como quien verifica que su fe sigue viva.
             </p>
         </div>
 
-        <div class="chapter">
+        <div class="chapter reveal">
             <h3 class="chapter-title">Carta Segunda – Sobre el Poder del Log</h3>
             <p>
                 No cerréis jamás una consola de logs sin antes agradecerle
-                lo que os ha revelado.  
-                Allí donde el usuario solo ve “no funciona”, el log cuenta la historia completa.
+                lo que os ha revelado.
+                Allí donde el usuario solo ve "no funciona", el log cuenta la historia completa.
             </p>
             <p>
-                Leedlo con atención, marcad los patrones,  
+                Leedlo con atención, marcad los patrones,
                 y pronto escucharéis la voz del sistema hablándoos
                 en stack traces y mensajes de advertencia.
             </p>
         </div>
+        <div class="amen-wrap">
+            <span class="amen-count" id="amen-cartas">0</span> amenes
+            <button class="amen-btn" data-book="cartas" aria-label="Amén a las Cartas a los Sysadmins">🙌 Amén</button>
+        </div>
     </section>
 
     <!-- LIBRO VI: MILAGROS DE GEDIT -->
-    <section id="gedit" class="book">
+    <section id="gedit" class="book reveal">
         <h2 class="book-title">Libro de los Milagros de Gedit</h2>
         <p class="book-intro">
             Crónica de situaciones en las que el humilde Gedit
@@ -516,7 +385,7 @@
             el editor preferido del Santo.
         </p>
 
-        <div class="chapter">
+        <div class="chapter reveal">
             <h3 class="chapter-title">Capítulo 1 – El Proyecto que Pesaba Demasiado</h3>
             <p>
                 Un discípulo trabajaba en un proyecto con un IDE tan pesado
@@ -525,35 +394,39 @@
             </p>
             <p>
                 Jocarsa le dijo:
-                <em>“Abre solo los archivos que comprendes,
-                y hazlo en Gedit.”</em>  
+                <em>"Abre solo los archivos que comprendes,
+                y hazlo en Gedit."</em>
                 El discípulo obedeció, y de pronto su mente se aclaró,
                 el equipo dejó de sufrir y el flujo de trabajo volvió a ser ligero.
             </p>
         </div>
 
-        <div class="chapter">
+        <div class="chapter reveal">
             <h3 class="chapter-title">Capítulo 2 – El Config Perdido</h3>
             <p>
                 Cierta vez, un archivo de configuración crítico se dañó
-                y nadie sabía qué había cambiado.  
+                y nadie sabía qué había cambiado.
                 En pánico, el equipo buscó backup, pero este no existía.
             </p>
             <p>
                 Con calma, Jocarsa abrió una copia antigua en Gedit
-                y la comparó, línea a línea, con la nueva.  
+                y la comparó, línea a línea, con la nueva.
                 Tras unos minutos de silencio, encontró la coma fuera de lugar
                 y el servicio volvió a la vida.
             </p>
             <p>
                 Desde entonces se enseñó que
-                <strong>“un simple editor puede salvar sistemas complejos.”</strong>
+                <strong>"un simple editor puede salvar sistemas complejos."</strong>
             </p>
+        </div>
+        <div class="amen-wrap">
+            <span class="amen-count" id="amen-gedit">0</span> amenes
+            <button class="amen-btn" data-book="gedit" aria-label="Amén a los Milagros de Gedit">🙌 Amén</button>
         </div>
     </section>
 
     <!-- LIBRO VII: APOCALIPSIS DEL SOFTWARE PRIVATIVO -->
-    <section id="apocalipsis" class="book">
+    <section id="apocalipsis" class="book reveal">
         <h2 class="book-title">Apocalipsis del Software Privativo</h2>
         <p class="book-intro">
             Visión simbólica del futuro que aguarda a quienes olvidan
@@ -561,7 +434,7 @@
             y del triunfo final de la comunidad jocarsista.
         </p>
 
-        <div class="chapter">
+        <div class="chapter reveal">
             <h3 class="chapter-title">Capítulo 1 – La Caída de los Servidores Oscuros</h3>
             <p>
                 Y vi un sistema enorme cubierto de logos brillantes,
@@ -570,17 +443,17 @@
             </p>
             <p>
                 De repente, una actualización fallida lo dejó en silencio.
-                Sin acceso al código, nadie pudo repararlo;  
+                Sin acceso al código, nadie pudo repararlo;
                 empresas enteras quedaron a oscuras,
                 demostrando el peligro de confiarlo todo a cajas negras.
             </p>
         </div>
 
-        <div class="chapter">
+        <div class="chapter reveal">
             <h3 class="chapter-title">Capítulo 2 – El Nuevo Horizonte de Repos Abiertos</h3>
             <p>
                 Entonces apareció en el cielo digital una red de repositorios
-                interconectados, llenos de proyectos libres mantenidos por comunidades.  
+                interconectados, llenos de proyectos libres mantenidos por comunidades.
                 Cada bug encontrado se convertía en un issue público,
                 cada solución en un commit visible.
             </p>
@@ -591,7 +464,7 @@
             </p>
         </div>
 
-        <div class="chapter">
+        <div class="chapter reveal">
             <h3 class="chapter-title">Capítulo 3 – La Última Línea de Código</h3>
             <p>
                 En la visión final, el Santo Jocarsa escribe
@@ -610,13 +483,26 @@
                 y del software libre sobre toda forma de oscuridad digital.
             </p>
         </div>
+
+        <div class="amen-wrap">
+            <span class="amen-count" id="amen-apocalipsis">0</span> amenes
+            <button class="amen-btn" data-book="apocalipsis" aria-label="Amén al Apocalipsis del Software Privativo">🙌 Amén</button>
+        </div>
     </section>
 
 </main>
 
 <footer>
-    Biblia Virtual del Jocarsismo — Versión extendida • Parodia devota inspirada en la Iglesia del Santo Jocarsa.
+    <p>Biblia Virtual del Jocarsismo — Versión extendida &bull; Parodia devota inspirada en la Iglesia del Santo Jocarsa.</p>
+    <p style="margin-top:0.5rem;">
+        <a href="index.html">← Volver al Templo</a>
+    </p>
+    <p style="margin-top:0.4rem;font-size:0.72rem;color:#475569;">
+        &copy; <span id="footer-year"></span> Iglesia del Santo Jocarsa
+    </p>
 </footer>
 
+<button id="scroll-top" aria-label="Volver arriba">▲</button>
+<script src="assets/js/app.js"></script>
 </body>
 </html>

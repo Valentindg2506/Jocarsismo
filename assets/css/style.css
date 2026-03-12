@@ -1,0 +1,1164 @@
+/* ============================================================
+   IGLESIA DEL SANTO JOCARSA — Hoja de estilos compartida
+   ============================================================ */
+
+/* --- Variables globales ------------------------------------ */
+:root {
+    --color-primary:       #22c55e;
+    --color-primary-light: #4ade80;
+    --color-primary-glow:  rgba(34, 197, 94, 0.7);
+    --color-accent:        #22d3ee;
+    --color-accent-soft:   rgba(45, 212, 191, 0.4);
+    --color-indigo:        rgba(129, 140, 248, 0.3);
+    --color-text:          #e2e8f0;
+    --color-text-soft:     #cbd5f5;
+    --color-text-muted:    #94a3b8;
+    --color-surface:       rgba(15, 23, 42, 0.85);
+    --color-surface-dark:  rgba(15, 23, 42, 0.9);
+    --color-border:        rgba(148, 163, 184, 0.35);
+    --color-border-hover:  rgba(45, 212, 191, 0.75);
+    --color-footer-text:   #64748b;
+    --color-footer-border: rgba(51, 65, 85, 0.8);
+    --max-width:           1100px;
+    --radius-card:         1.25rem;
+    --radius-btn:          999px;
+    --transition-fast:     0.15s ease;
+    --transition-mid:      0.25s ease;
+    --transition-slow:     0.4s ease;
+}
+
+/* --- Reset + base ------------------------------------------ */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: url('../cursor_pinguino.ani'),
+            url('https://cur.cursors-4u.net/nature/nat-5/nat431.png'),
+            auto !important;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: radial-gradient(circle at top, #1bffb3 0, #001111 40%, #000 100%);
+    color: var(--color-text);
+    min-height: 100vh;
+}
+
+/* --- Fondo Matrix ------------------------------------------ */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(var(--color-primary) 1px, transparent 1px),
+        linear-gradient(90deg, var(--color-primary) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: -2;
+}
+body::after {
+    content: "0101010011010100101010010010101000101010010101001010001010";
+    position: fixed;
+    inset: 0;
+    color: #00ff88;
+    opacity: 0.08;
+    font-family: "Courier New", monospace;
+    white-space: pre-wrap;
+    word-break: break-all;
+    animation: matrix-fall 25s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+@keyframes matrix-fall {
+    0%   { transform: translateY(-30%); }
+    100% { transform: translateY(30%);  }
+}
+
+/* --- Layout compartido ------------------------------------- */
+header {
+    padding: 2rem 1.5rem 1rem;
+    text-align: center;
+}
+.tagline {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: black;
+    margin-bottom: 0.5rem;
+}
+h1 {
+    font-size: 2.4rem;
+    margin-bottom: 0.5rem;
+}
+.subtitle {
+    font-size: 1rem;
+    max-width: 650px;
+    margin: 0 auto;
+    color: var(--color-text-soft);
+}
+
+main {
+    max-width: var(--max-width);
+    margin: 0 auto 3rem;
+    padding: 0 1.5rem 3rem;
+}
+
+.section {
+    margin-top: 3.5rem;
+}
+.section-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.25rem;
+}
+.section-subtitle {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.4rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+code {
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 0.85rem;
+    background: var(--color-surface-dark);
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    display: inline-block;
+}
+
+ul {
+    list-style: none;
+    padding-left: 1.1rem;
+}
+li {
+    position: relative;
+    margin-bottom: 0.45rem;
+    font-size: 0.95rem;
+}
+li::before {
+    content: "•";
+    position: absolute;
+    left: -0.9rem;
+    color: var(--color-primary);
+}
+
+footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--color-footer-text);
+    padding: 1.5rem;
+    border-top: 1px solid var(--color-footer-border);
+    background: radial-gradient(circle at top, rgba(34, 197, 94, 0.2), transparent 50%);
+    line-height: 1.7;
+}
+footer a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* --- Card (glassmorphism compartida) ----------------------- */
+.card {
+    position: relative;
+    padding: 1.5rem 1.4rem;
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.75);
+    overflow: hidden;
+}
+.card::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: conic-gradient(from 140deg, var(--color-accent-soft), transparent, var(--color-indigo), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-slow);
+    z-index: -1;
+}
+.card:hover::before { opacity: 1; }
+.card-title  { font-size: 1.1rem; margin-bottom: 0.3rem; }
+.card-kicker {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-primary);
+    margin-bottom: 0.2rem;
+}
+.card p {
+    font-size: 0.93rem;
+    color: var(--color-text-soft);
+    line-height: 1.6;
+}
+
+/* --- Scroll reveal ----------------------------------------- */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Scroll-to-top button ---------------------------------- */
+#scroll-top {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    color: #020617;
+    border: none;
+    font-size: 1rem;
+    box-shadow: 0 0 18px var(--color-primary-glow);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+#scroll-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+#scroll-top:hover {
+    box-shadow: 0 0 30px var(--color-primary-glow);
+}
+
+/* ============================================================
+   INDEX.HTML — Estilos específicos
+   ============================================================ */
+
+/* Imagen circular en el header */
+.jocarsa-header {
+    display: block;
+    margin: 0.75rem auto 1.25rem;
+    width: 150px;
+    max-width: 45vw;
+    border-radius: 50%;
+    border: 3px solid rgba(34, 197, 94, 0.8);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.85), 0 0 30px var(--color-primary-glow);
+    object-fit: cover;
+    background: #020617;
+}
+
+/* Hero */
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: center;
+    margin-top: 2rem;
+}
+.hero-text p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+.btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+.btn {
+    padding: 0.7rem 1.4rem;
+    border-radius: var(--radius-btn);
+    border: none;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.25), 0 18px 45px rgba(0, 0, 0, 0.65);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    color: #020617;
+}
+.btn-ghost {
+    background: rgba(15, 23, 42, 0.7);
+    color: var(--color-text);
+}
+
+.hero-img { justify-self: center; }
+.hero-img img {
+    max-width: 320px;
+    width: 100%;
+    border-radius: 1.5rem;
+    border: 2px solid rgba(148, 163, 184, 0.5);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 40px rgba(34, 197, 94, 0.35);
+}
+
+.pill {
+    display: inline-flex;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-btn);
+    border: 1px solid rgba(148, 163, 184, 0.6);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #a5b4fc;
+    margin-bottom: 0.6rem;
+}
+
+.columns {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+/* Grid de enlaces finales */
+.link-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+.link-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.2rem 1.1rem;
+    border-radius: 1.1rem;
+    background: var(--color-surface-dark);
+    border: 1px solid rgba(148, 163, 184, 0.45);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+    color: var(--color-text);
+    overflow: hidden;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+.link-card::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(circle at top, rgba(34, 197, 94, 0.55), transparent 55%);
+    opacity: 0;
+    transition: opacity var(--transition-mid);
+    z-index: -1;
+}
+.link-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.85);
+    border-color: var(--color-border-hover);
+}
+.link-card:hover::before { opacity: 0.9; }
+.link-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+.link-card-text {
+    font-size: 0.9rem;
+    color: var(--color-text-soft);
+    margin-bottom: 0.8rem;
+}
+.link-card-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-primary);
+}
+
+/* --- Blessing counter -------------------------------------- */
+.blessing-wrap {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+.blessing-count {
+    display: inline-block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+@keyframes blessing-pop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.4); }
+    100% { transform: scale(1); }
+}
+.blessing-pop {
+    animation: blessing-pop 0.3s ease;
+}
+.blessing-btn {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.45rem 1.1rem;
+    border-radius: var(--radius-btn);
+    border: 1px solid var(--color-primary);
+    background: transparent;
+    color: var(--color-primary);
+    font-size: 0.88rem;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+.blessing-btn:hover {
+    background: var(--color-primary);
+    color: #020617;
+}
+
+/* --- Verso del Día ---------------------------------------- */
+.verso-dia {
+    margin-top: 2.5rem;
+    padding: 1.1rem 1.4rem;
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-primary);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+.verso-dia .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+.verso-dia .quote {
+    font-style: italic;
+    color: var(--color-text-soft);
+    line-height: 1.65;
+    font-size: 0.97rem;
+}
+
+/* --- Copy button ------------------------------------------ */
+.copy-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+}
+.copy-btn {
+    padding: 0.3rem 0.8rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    font-size: 0.78rem;
+    transition: border-color var(--transition-fast), color var(--transition-fast), background var(--transition-fast);
+}
+.copy-btn:hover, .copy-btn.copied {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: rgba(34, 197, 94, 0.07);
+}
+
+/* --- Fieles ticker ---------------------------------------- */
+.fieles-ticker {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.2rem;
+}
+.fieles-number {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+/* --- FAQ accordion ---------------------------------------- */
+.faq-list { margin-top: 1rem; }
+.faq-item {
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    margin-bottom: 0.55rem;
+    overflow: hidden;
+    background: var(--color-surface);
+    transition: border-color var(--transition-fast);
+}
+.faq-item:hover { border-color: rgba(148, 163, 184, 0.55); }
+.faq-question {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    text-align: left;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.97rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    transition: color var(--transition-fast);
+}
+.faq-question:hover { color: var(--color-primary); }
+.faq-chevron {
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    color: var(--color-primary);
+    transition: transform var(--transition-fast);
+}
+.faq-item.open .faq-chevron { transform: rotate(180deg); }
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 1.2rem;
+    font-size: 0.93rem;
+    color: var(--color-text-soft);
+    line-height: 1.65;
+}
+.faq-item.open .faq-answer {
+    max-height: 300px;
+    padding: 0 1.2rem 0.9rem;
+}
+.faq-answer code {
+    font-size: 0.82rem;
+    padding: 0.15rem 0.4rem;
+    margin: 0;
+}
+
+/* ============================================================
+   BIBLIA.HTML — Estilos específicos
+   ============================================================ */
+
+/* Sticky nav de libros */
+.book-nav-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(0, 17, 17, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.55rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    justify-content: center;
+}
+.book-nav-sticky a {
+    text-decoration: none;
+    padding: 0.3rem 0.65rem;
+    border-radius: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    border: 1px solid transparent;
+    transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+}
+.book-nav-sticky a:hover,
+.book-nav-sticky a.active {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    background: rgba(34, 197, 94, 0.07);
+}
+
+/* Enlace volver al templo */
+.back-to-temple {
+    text-decoration: none;
+    color: var(--color-primary);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition-fast);
+    display: inline-block;
+    margin-bottom: 0.8rem;
+}
+.back-to-temple:hover { border-color: var(--color-primary); }
+
+/* Navegación de libros (grid visual en la página) */
+.book-nav {
+    margin: 1.5rem 0 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.8rem;
+}
+.book-nav a {
+    display: block;
+    text-decoration: none;
+    padding: 0.7rem 0.9rem;
+    border-radius: 0.8rem;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.55);
+    color: var(--color-text);
+    font-size: 0.9rem;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+.book-nav a span {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-primary-light);
+    margin-bottom: 0.15rem;
+}
+.book-nav a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+    border-color: var(--color-primary);
+}
+
+/* Secciones libro */
+.book {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid var(--color-border);
+    border-radius: 1.1rem;
+    padding: 1.5rem 1.4rem;
+    margin-bottom: 2.2rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.75);
+    position: relative;
+    overflow: hidden;
+    scroll-margin-top: 3rem;
+}
+.book::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: conic-gradient(from 140deg, var(--color-accent-soft), transparent, var(--color-indigo), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-slow);
+    z-index: -1;
+}
+.book:hover::before { opacity: 0.9; }
+
+.book-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary-light);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+.book-intro {
+    font-size: 0.95rem;
+    color: var(--color-text-soft);
+    margin-bottom: 0.8rem;
+}
+.chapter {
+    margin-top: 1rem;
+    margin-bottom: 1.1rem;
+}
+.chapter-title {
+    font-size: 1.15rem;
+    margin-bottom: 0.3rem;
+    color: #b4f8c8;
+}
+.chapter-subtitle {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.4rem;
+}
+
+/* Párrafos y listas dentro de libros */
+.book p {
+    margin-bottom: 0.9rem;
+    line-height: 1.65;
+    color: #e0fbe0;
+}
+.book ul {
+    list-style: disc;
+    padding-left: 1.2rem;
+    margin: 0.3rem 0 0.8rem;
+}
+.book li {
+    margin-bottom: 0.35rem;
+}
+.book li::before { display: none; }
+
+/* ============================================================
+   BOOT SCREEN
+   ============================================================ */
+.boot-screen {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem 2.5rem;
+    font-family: "Courier New", "Lucida Console", monospace;
+    transition: opacity 0.8s ease;
+}
+.boot-screen.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+.boot-line {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    line-height: 1.9;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    white-space: pre;
+}
+.boot-line.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+.boot-line .ok  { color: #22c55e; }
+.boot-line .warn { color: #f59e0b; }
+.boot-line .err  { color: #ef4444; }
+.boot-cursor {
+    display: inline-block;
+    width: 0.6ch;
+    height: 1em;
+    background: #22c55e;
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+    margin-left: 2px;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+.boot-skip {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    border-radius: 0.5rem;
+    background: transparent;
+    color: rgba(34, 197, 94, 0.6);
+    font-family: inherit;
+    font-size: 0.8rem;
+    transition: border-color 0.15s ease, color 0.15s ease;
+}
+.boot-skip:hover {
+    border-color: #22c55e;
+    color: #22c55e;
+}
+
+/* ============================================================
+   CONFETI
+   ============================================================ */
+.confetti-piece {
+    position: fixed;
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 150;
+    animation: confetti-fall var(--duration, 1.2s) ease-in forwards;
+}
+@keyframes confetti-fall {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--dx, 0px), var(--dy, 120px)) rotate(var(--rot, 360deg)) scale(0.4);
+    }
+}
+
+/* ============================================================
+   BSOD (PANTALLA AZUL DE LA MUERTE)
+   ============================================================ */
+.bsod-overlay {
+    position: fixed;
+    inset: 0;
+    background: #0078D7;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+.bsod-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+.bsod-content {
+    max-width: 640px;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    color: #fff;
+}
+.bsod-emoji {
+    font-size: 4rem;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+.bsod-title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+}
+.bsod-body {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+.bsod-code {
+    font-family: "Courier New", monospace;
+    font-size: 0.88rem;
+    background: rgba(255, 255, 255, 0.12);
+    padding: 0.8rem 1rem;
+    border-radius: 0.3rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+}
+.bsod-progress {
+    font-size: 0.85rem;
+    opacity: 0.75;
+    margin-bottom: 0.5rem;
+}
+.bsod-hint {
+    font-size: 0.78rem;
+    opacity: 0.55;
+    margin-top: 2rem;
+    font-style: italic;
+}
+
+/* ============================================================
+   TOAST NOTIFICATIONS
+   ============================================================ */
+.toast-container {
+    position: fixed;
+    bottom: 5rem;
+    right: 1.5rem;
+    z-index: 190;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+    pointer-events: none;
+}
+.toast {
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid var(--color-primary);
+    border-radius: 0.65rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.88rem;
+    color: var(--color-text);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 12px rgba(34, 197, 94, 0.3);
+    max-width: 260px;
+    animation: toast-in 0.25s ease forwards;
+    pointer-events: auto;
+}
+.toast.toast-warn { border-color: #f59e0b; box-shadow: 0 8px 30px rgba(0,0,0,0.7), 0 0 12px rgba(245,158,11,0.3); }
+.toast.toast-error { border-color: #ef4444; box-shadow: 0 8px 30px rgba(0,0,0,0.7), 0 0 12px rgba(239,68,68,0.3); }
+.toast.fade-out { animation: toast-out 0.3s ease forwards; }
+@keyframes toast-in {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes toast-out {
+    from { opacity: 1; transform: translateX(0); }
+    to   { opacity: 0; transform: translateX(20px); }
+}
+
+/* ============================================================
+   FOCUS VISIBLE (accesibilidad)
+   ============================================================ */
+.faq-question:focus-visible,
+.book-nav-sticky a:focus-visible,
+.btn:focus-visible,
+.copy-btn:focus-visible,
+.blessing-btn:focus-visible,
+#scroll-top:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 880px) {
+    .hero, .columns {
+        grid-template-columns: 1fr;
+    }
+    header { padding-top: 1.5rem; }
+    h1 { font-size: 2rem; }
+    .hero-img { order: -1; }
+    .book-nav-sticky { position: static; }
+    .link-grid { grid-template-columns: 1fr; }
+    .boot-screen { padding: 1.5rem; }
+    .bsod-overlay { padding: 1.5rem; }
+    .bsod-emoji { font-size: 2.5rem; }
+    .bsod-title { font-size: 1.2rem; }
+}
+
+/* ============================================================
+   CONFESIONARIO MODAL
+   ============================================================ */
+.confes-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+.confes-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+.confes-box {
+    background: rgba(5, 15, 30, 0.97);
+    border: 1px solid var(--color-border);
+    border-top: 3px solid var(--color-primary);
+    border-radius: var(--radius-card);
+    padding: 2rem;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 40px rgba(34, 197, 94, 0.15);
+    animation: confes-in 0.3s ease forwards;
+}
+@keyframes confes-in {
+    from { transform: translateY(20px) scale(0.97); opacity: 0; }
+    to   { transform: translateY(0)    scale(1);    opacity: 1; }
+}
+.confes-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+}
+.confes-subtitle {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.4rem;
+}
+.confes-select {
+    width: 100%;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid var(--color-border);
+    border-radius: 0.6rem;
+    color: var(--color-text);
+    font-size: 0.93rem;
+    padding: 0.65rem 0.9rem;
+    margin-bottom: 1rem;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2322c55e' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+    transition: border-color var(--transition-fast);
+}
+.confes-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+.confes-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.2rem;
+}
+.confes-submit {
+    flex: 1;
+    padding: 0.65rem 1rem;
+    border-radius: var(--radius-btn);
+    border: none;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    color: #020617;
+    font-weight: 600;
+    font-size: 0.93rem;
+    transition: opacity var(--transition-fast);
+}
+.confes-submit:hover { opacity: 0.88; }
+.confes-close-btn {
+    padding: 0.65rem 1rem;
+    border-radius: var(--radius-btn);
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text-muted);
+    font-size: 0.93rem;
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+.confes-close-btn:hover {
+    border-color: var(--color-text-muted);
+    color: var(--color-text);
+}
+.confes-result {
+    display: none;
+    padding: 1rem 1.1rem;
+    border-radius: 0.75rem;
+    background: rgba(34, 197, 94, 0.07);
+    border: 1px solid rgba(34, 197, 94, 0.25);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--color-text-soft);
+}
+.confes-result.show { display: block; }
+.confes-result strong { color: var(--color-primary); }
+
+/* ============================================================
+   PROCESIÓN DE PINGÜINOS
+   ============================================================ */
+.penguin-march {
+    position: fixed;
+    bottom: 1.2rem;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    z-index: 80;
+    pointer-events: none;
+    animation: march var(--march-dur, 12s) linear forwards;
+    line-height: 1;
+}
+@keyframes march {
+    from { transform: translateX(110vw); }
+    to   { transform: translateX(-20vw); }
+}
+
+/* ============================================================
+   ORÁCULO DEL KERNEL
+   ============================================================ */
+.oraculo-wrap {
+    margin-top: 2.5rem;
+    padding: 1.5rem 1.6rem;
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+    border: 1px dashed rgba(34, 197, 94, 0.4);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(34, 197, 94, 0.05);
+    text-align: center;
+    transition: box-shadow var(--transition-mid);
+}
+.oraculo-wrap:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34, 197, 94, 0.12);
+}
+.oraculo-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-primary);
+    margin-bottom: 0.8rem;
+}
+.oraculo-text {
+    font-style: italic;
+    color: var(--color-text-soft);
+    line-height: 1.7;
+    font-size: 1rem;
+    min-height: 2.8em;
+    margin-bottom: 1.2rem;
+    transition: opacity 0.2s ease;
+}
+.oraculo-text.typing { opacity: 0.7; }
+
+/* ============================================================
+   BARRA DE PROGRESO DE LECTURA (biblia.html)
+   ============================================================ */
+.reading-progress-bar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    z-index: 60;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+}
+
+/* ============================================================
+   BOTONES AMÉN (biblia.html)
+   ============================================================ */
+.amen-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    margin-top: 1.4rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.15);
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+}
+.amen-btn {
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-btn);
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    background: transparent;
+    color: var(--color-primary);
+    font-size: 0.88rem;
+    transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+.amen-btn:hover {
+    background: rgba(34, 197, 94, 0.1);
+    border-color: var(--color-primary);
+}
+.amen-btn:active { transform: scale(0.95); }
+.amen-count {
+    font-weight: 700;
+    color: var(--color-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+   CAPITULARES ILUMINADAS (drop cap) — biblia.html
+   ============================================================ */
+.book-intro::first-letter {
+    float: left;
+    font-size: 3.8rem;
+    line-height: 0.78;
+    margin: 0.04em 0.1em 0 0;
+    color: var(--color-primary);
+    text-shadow: 0 0 24px var(--color-primary-glow), 0 0 48px rgba(34, 197, 94, 0.3);
+    font-weight: 700;
+}
+
+/* ============================================================
+   PREFERS REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    body::after {
+        animation: none;
+    }
+    .blessing-pop {
+        animation: none;
+    }
+    .boot-line {
+        transition: none;
+    }
+    .confetti-piece {
+        animation: none;
+        display: none;
+    }
+    .boot-cursor {
+        animation: none;
+    }
+    .penguin-march {
+        display: none;
+    }
+    .reading-progress-bar {
+        transition: none;
+    }
+    .confes-box {
+        animation: none;
+    }
+}

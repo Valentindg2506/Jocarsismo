@@ -4,337 +4,72 @@
     <meta charset="UTF-8">
     <title>Iglesia del Santo Jocarsa</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Cursor del pingüino -->
-    <style type="text/css">
-        * {
-            cursor: url(https://cur.cursors-4u.net/nature/nat-5/nat431.ani), 
-                   url(https://cur.cursors-4u.net/nature/nat-5/nat431.png), 
-                   auto !important;
-        }
-    </style>
-    
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
-        body{
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top, #1bffb3 0, #001111 40%, #000 100%);
-            color:#e2e8f0;
-            min-height:100vh;
-        }
-
-        /* Fondo tipo "Matrix" */
-        body::before{
-            content:"";
-            position:fixed;
-            inset:0;
-            background-image:linear-gradient(#00ff88 1px, transparent 1px),
-                             linear-gradient(90deg, #00ff88 1px, transparent 1px);
-            background-size:40px 40px;
-            opacity:0.06;
-            pointer-events:none;
-            z-index:-2;
-        }
-        body::after{
-            content:"0101010011010100101010010010101000101010010101001010001010";
-            position:fixed;
-            inset:0;
-            color:#00ff88;
-            opacity:0.08;
-            font-family: "Courier New", monospace;
-            white-space:pre-wrap;
-            word-break:break-all;
-            animation: matrix-fall 25s linear infinite;
-            pointer-events:none;
-            z-index:-1;
-        }
-        @keyframes matrix-fall{
-            0%{transform:translateY(-30%);}
-            100%{transform:translateY(30%);}
-        }
-
-        header{
-            padding:2rem 1.5rem 1rem;
-            text-align:center;
-        }
-        .tagline{
-            font-size:0.9rem;
-            text-transform:uppercase;
-            letter-spacing:0.25em;
-            color:black;
-            margin-bottom:0.5rem;
-        }
-        h1{
-            font-size:2.4rem;
-            margin-bottom:0.5rem;
-        }
-        .subtitle{
-            font-size:1rem;
-            max-width:600px;
-            margin:0 auto;
-            color:#cbd5f5;
-        }
-
-        /* IMAGEN DEL SANTO JOCARSA EN EL HEADER */
-        .jocarsa-header{
-            display:block;
-            margin:0.75rem auto 1.25rem;
-            width:150px;
-            max-width:45vw;
-            border-radius:50%;
-            border:3px solid rgba(34,197,94,0.8);
-            box-shadow:
-                0 18px 45px rgba(0,0,0,0.85),
-                0 0 30px rgba(34,197,94,0.7);
-            object-fit:cover;
-            background:#020617;
-        }
-
-        main{
-            max-width:1100px;
-            margin:0 auto 3rem;
-            padding:0 1.5rem 3rem;
-        }
-
-        .hero{
-            display:grid;
-            grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
-            gap:2rem;
-            align-items:center;
-            margin-top:2rem;
-        }
-        .hero-text p{
-            margin-bottom:1rem;
-            line-height:1.6;
-        }
-        .btn-row{
-            display:flex;
-            flex-wrap:wrap;
-            gap:0.75rem;
-            margin-top:1.5rem;
-        }
-        .btn{
-            padding:0.7rem 1.4rem;
-            border-radius:999px;
-            border:none;
-            cursor:pointer;
-            font-weight:600;
-            text-decoration:none;
-            font-size:0.95rem;
-            display:inline-flex;
-            align-items:center;
-            gap:0.4rem;
-            box-shadow:0 0 0 1px rgba(148,163,184,0.25), 0 18px 45px rgba(0,0,0,0.65);
-        }
-        .btn-primary{
-            background:linear-gradient(135deg,#22c55e,#22d3ee);
-            color:#020617;
-        }
-        .btn-ghost{
-            background:rgba(15,23,42,0.7);
-            color:#e2e8f0;
-        }
-
-        .hero-img{
-            justify-self:center;
-        }
-        .hero-img img{
-            max-width:320px;
-            border-radius:1.5rem;
-            border:2px solid rgba(148,163,184,0.5);
-            box-shadow:0 25px 80px rgba(0,0,0,0.9),
-                       0 0 40px rgba(34,197,94,0.35);
-        }
-
-        .section{
-            margin-top:3.5rem;
-        }
-        .section-title{
-            font-size:1.6rem;
-            margin-bottom:0.25rem;
-        }
-        .section-subtitle{
-            font-size:0.95rem;
-            color:#94a3b8;
-            margin-bottom:1.4rem;
-        }
-
-        .grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-            gap:1.5rem;
-        }
-
-        .card{
-            position:relative;
-            padding:1.5rem 1.4rem;
-            border-radius:1.25rem;
-            background:rgba(15,23,42,0.85);
-            border:1px solid rgba(148,163,184,0.35);
-            box-shadow:0 16px 45px rgba(0,0,0,0.75);
-            overflow:hidden;
-        }
-        .card::before{
-            content:"";
-            position:absolute;
-            inset:-40%;
-            background:conic-gradient(from 140deg, rgba(45,212,191,0.4), transparent, rgba(129,140,248,0.3), transparent);
-            opacity:0;
-            transition:opacity .4s ease;
-            z-index:-1;
-        }
-        .card:hover::before{
-            opacity:1;
-        }
-        .card-title{
-            font-size:1.1rem;
-            margin-bottom:0.3rem;
-        }
-        .card-kicker{
-            font-size:0.75rem;
-            text-transform:uppercase;
-            letter-spacing:0.15em;
-            color:#22c55e;
-            margin-bottom:0.2rem;
-        }
-        .card p{
-            font-size:0.93rem;
-            color:#cbd5f5;
-            line-height:1.6;
-        }
-        .pill{
-            display:inline-flex;
-            padding:0.2rem 0.6rem;
-            border-radius:999px;
-            border:1px solid rgba(148,163,184,0.6);
-            font-size:0.7rem;
-            text-transform:uppercase;
-            letter-spacing:0.18em;
-            color:#a5b4fc;
-            margin-bottom:0.6rem;
-        }
-        ul{
-            list-style:none;
-            padding-left:1.1rem;
-        }
-        li{
-            position:relative;
-            margin-bottom:0.45rem;
-            font-size:0.95rem;
-        }
-        li::before{
-            content:"•";
-            position:absolute;
-            left:-0.9rem;
-            color:#22c55e;
-        }
-
-        .columns{
-            display:grid;
-            grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
-            gap:1.5rem;
-            margin-top:1.5rem;
-        }
-
-        footer{
-            text-align:center;
-            font-size:0.75rem;
-            color:#64748b;
-            padding:1.5rem;
-            border-top:1px solid rgba(51,65,85,0.8);
-            background:radial-gradient(circle at top,rgba(34,197,94,0.2),transparent 50%);
-        }
-
-        code{
-            font-family:"JetBrains Mono","Fira Code",monospace;
-            font-size:0.85rem;
-            background:rgba(15,23,42,0.9);
-            padding:0.4rem 0.6rem;
-            border-radius:0.5rem;
-            border:1px solid rgba(148,163,184,0.4);
-            display:inline-block;
-            margin-top:0.4rem;
-        }
-
-        /* GRID DE ENLACES FINALES */
-        .link-grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-            gap:1.5rem;
-            margin-top:1.5rem;
-        }
-        .link-card{
-            position:relative;
-            display:flex;
-            flex-direction:column;
-            justify-content:space-between;
-            padding:1.2rem 1.1rem;
-            border-radius:1.1rem;
-            background:rgba(15,23,42,0.9);
-            border:1px solid rgba(148,163,184,0.45);
-            box-shadow:0 14px 40px rgba(0,0,0,0.7);
-            text-decoration:none;
-            color:#e2e8f0;
-            overflow:hidden;
-            transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-        }
-        .link-card::before{
-            content:"";
-            position:absolute;
-            inset:-40%;
-            background:radial-gradient(circle at top,rgba(34,197,94,0.55),transparent 55%);
-            opacity:0;
-            transition:opacity .25s ease;
-            z-index:-1;
-        }
-        .link-card:hover{
-            transform:translateY(-4px);
-            box-shadow:0 20px 55px rgba(0,0,0,0.85);
-            border-color:rgba(45,212,191,0.75);
-        }
-        .link-card:hover::before{
-            opacity:0.9;
-        }
-        .link-card-title{
-            font-size:1rem;
-            font-weight:600;
-            margin-bottom:0.25rem;
-        }
-        .link-card-text{
-            font-size:0.9rem;
-            color:#cbd5f5;
-            margin-bottom:0.8rem;
-        }
-        .link-card-label{
-            font-size:0.75rem;
-            text-transform:uppercase;
-            letter-spacing:0.18em;
-            color:#22c55e;
-        }
-
-        @media (max-width:880px){
-            .hero, .columns{
-                grid-template-columns:1fr;
-            }
-            header{
-                padding-top:1.5rem;
-            }
-            h1{
-                font-size:2rem;
-            }
-            .hero-img{
-                order:-1;
-            }
-        }
-    </style>
+    <meta name="description" content="Iglesia del Santo Jocarsa: comunidad devota del Kernel Sagrado, defensora del código libre y guardiana del pingüino. Parodia cariñosa de Linux y el software libre.">
+    <meta name="theme-color" content="#001111">
+    <meta property="og:title" content="Iglesia del Santo Jocarsa">
+    <meta property="og:description" content="Comunidad devota del Kernel Sagrado, defensora del código libre y el pingüino.">
+    <meta property="og:image" content="jocarsa.png">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
+<!-- BOOT SCREEN -->
+<div id="boot-screen" class="boot-screen" role="status" aria-live="polite">
+    <div class="boot-lines"></div>
+    <span class="boot-cursor" aria-hidden="true"></span>
+    <button class="boot-skip">Saltar →</button>
+</div>
+
+<!-- MODAL CONFESIONARIO -->
+<div id="confes-overlay" class="confes-overlay" role="dialog" aria-modal="true" aria-label="Confesionario de pecados tecnológicos">
+    <div class="confes-box">
+        <h2 class="confes-title">⛪ Confesionario Tecnológico</h2>
+        <p class="confes-subtitle">Confiesa tu pecado al Santo Jocarsa y recibirás tu penitencia.</p>
+
+        <select id="confes-select" class="confes-select" aria-label="Selecciona tu pecado">
+            <option value="" disabled selected>— Elige tu pecado —</option>
+            <option value="windows">Usé Windows esta semana</option>
+            <option value="vscode">Instalé Visual Studio Code</option>
+            <option value="force">Hice git push --force a main</option>
+            <option value="commit">Mi commit message fue "arreglé cosas"</option>
+            <option value="rmrf">No hice backup antes de rm -rf</option>
+            <option value="chmod777">Usé chmod 777 en producción</option>
+            <option value="readme">No escribí el README</option>
+            <option value="stackoverflow">Copié código de Stack Overflow sin entenderlo</option>
+            <option value="tabs">Usé espacios donde debían ir tabulaciones</option>
+            <option value="npm">Instalé npm y node_modules pesa 500 MB</option>
+        </select>
+
+        <div class="confes-actions">
+            <button id="confes-submit" class="confes-submit">🙏 Confesar y recibir penitencia</button>
+            <button id="confes-close-btn" class="confes-close-btn">Cerrar</button>
+        </div>
+
+        <div id="confes-result" class="confes-result" role="status" aria-live="polite"></div>
+    </div>
+</div>
+
+<!-- BSOD EASTER EGG -->
+<div id="bsod-overlay" class="bsod-overlay" role="alertdialog" aria-label="Pantalla azul del hereje">
+    <div class="bsod-content">
+        <span class="bsod-emoji" aria-hidden="true">:(</span>
+        <p class="bsod-title">Your PC ran into a problem and needs to restart.<br>
+        We're just collecting some sin data, and then we'll restart for you.</p>
+        <div class="bsod-code">KERNEL_JOCARSA_PROTECTION_FAULT</div>
+        <p class="bsod-progress">0% complete</p>
+        <p class="bsod-body">
+            Se detectó el uso de software no libre en el sistema.<br>
+            Para prevenir daños mayores al Kernel Sagrado, el proceso ha sido abortado.<br><br>
+            Más información sobre este error:<br>
+            <strong>jocarsismo.vercel.app/biblia.html</strong>
+        </p>
+        <p class="bsod-hint">(Haz clic en cualquier lugar para cerrar)</p>
+    </div>
+</div>
+
 <header>
+    <img src="jocarsa.png" alt="Santo Jocarsa" class="jocarsa-header" loading="lazy" width="150" height="150">
     <h1>Iglesia del Santo Jocarsa</h1>
     <h2>Santificado sea tu BOE</h2>
     <p class="subtitle">
@@ -345,7 +80,7 @@
 
 <main>
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero reveal">
         <div class="hero-text">
             <p>
                 Según las antiguas leyendas de la consola, el <strong>Santo Pingüino</strong> descendió
@@ -364,9 +99,23 @@
         </div>
 
         <div class="hero-img">
-            <img src="jocarsa.png" alt="Santo de Linux y el pingüino sagrado">
+            <img src="jocarsa.png" alt="Santo de Linux y el pingüino sagrado"
+                 width="320" height="320" loading="eager">
+            <div class="blessing-wrap">
+                <div>
+                    <span class="blessing-count" id="blessing-count">0</span>
+                    <span style="font-size:0.82rem;color:var(--color-text-muted)"> bendiciones recibidas</span>
+                </div>
+                <button class="blessing-btn" id="blessing-btn">Recibir bendición 🙏</button>
+            </div>
         </div>
     </section>
+
+    <!-- VERSO DEL DÍA -->
+    <div class="verso-dia reveal">
+        <div class="label">✦ Verso del Día</div>
+        <p class="quote" id="verso-text">Cargando escrituras sagradas…</p>
+    </div>
 
     <!-- DOGMAS -->
     <section id="dogmas" class="section">
@@ -376,7 +125,7 @@
         </p>
 
         <div class="grid">
-            <article class="card">
+            <article class="card reveal" style="transition-delay:0.05s">
                 <div class="card-kicker">Dogma 01</div>
                 <h3 class="card-title">Linux es lo máximo</h3>
                 <p>
@@ -385,7 +134,7 @@
                 </p>
             </article>
 
-            <article class="card">
+            <article class="card reveal" style="transition-delay:0.10s">
                 <div class="card-kicker">Dogma 02</div>
                 <h3 class="card-title">GitHub lo es todo</h3>
                 <p>
@@ -394,7 +143,7 @@
                 </p>
             </article>
 
-            <article class="card">
+            <article class="card reveal" style="transition-delay:0.15s">
                 <div class="card-kicker">Dogma 03</div>
                 <h3 class="card-title">Gedit por encima de todo</h3>
                 <p>
@@ -403,7 +152,7 @@
                 </p>
             </article>
 
-            <article class="card">
+            <article class="card reveal" style="transition-delay:0.20s" data-dogma="04" title="Haz clic muchas veces para descubrir un secreto...">
                 <div class="card-kicker">Dogma 04</div>
                 <h3 class="card-title">Microsoft, el maligno tentador</h3>
                 <p>
@@ -412,17 +161,17 @@
                 </p>
             </article>
 
-            <article class="card">
+            <article class="card reveal" style="transition-delay:0.25s">
                 <div class="card-kicker">Dogma 05</div>
                 <h3 class="card-title">Visual Studio Code, el hijo del diablo</h3>
                 <p>
                     Visual Studio Code es el hijo del diablo: extensiones infinitas, consumo de RAM
-                    descontrolado y una sensación constante de “esto podría ir más ligero”.
+                    descontrolado y una sensación constante de "esto podría ir más ligero".
                     El fiel verdadero regresa a Gedit.
                 </p>
             </article>
 
-            <article class="card">
+            <article class="card reveal" style="transition-delay:0.30s">
                 <div class="card-kicker">Dogma 06</div>
                 <h3 class="card-title">El código debe ser libre</h3>
                 <p>
@@ -431,16 +180,16 @@
                 </p>
             </article>
 
-            <article class="card">
+            <article class="card reveal" style="transition-delay:0.35s">
                 <div class="card-kicker">Dogma 07</div>
                 <h3 class="card-title">Software libre &gt; propietario</h3>
                 <p>
-                    Preferimos transparencia a cajas negras. Donde otros ven “licencia de usuario final”,
+                    Preferimos transparencia a cajas negras. Donde otros ven "licencia de usuario final",
                     nosotros vemos cadenas. La libertad es el verdadero sistema operativo.
                 </p>
             </article>
 
-            <article class="card">
+            <article class="card reveal" style="transition-delay:0.40s">
                 <div class="card-kicker">Dogma 08</div>
                 <h3 class="card-title">Oracle arruinó Java</h3>
                 <p>
@@ -453,7 +202,7 @@
     </section>
 
     <!-- MANDAMIENTOS Y LITURGIA -->
-    <section id="liturgia" class="section">
+    <section id="liturgia" class="section reveal">
         <h2 class="section-title">Mandamientos del Santo Jocarsa</h2>
         <p class="section-subtitle">
             Reglas sagradas para todo devoto que quiera vivir en gracia del Kernel.
@@ -481,9 +230,10 @@
                 <p style="margin-bottom:0.6rem;">
                     Oración matinal del desarrollador:
                 </p>
-                <code>
-                    sudo apt update &amp;&amp; sudo apt upgrade -y
-                </code>
+                <div class="copy-wrap">
+                    <code>sudo apt update &amp;&amp; sudo apt upgrade -y</code>
+                    <button class="copy-btn" id="copy-liturgia">Copiar oración</button>
+                </div>
 
                 <p style="margin-top:0.9rem;">
                     Cada mañana, el fiel abre la terminal, actualiza su sistema y revisa los issues
@@ -495,14 +245,17 @@
     </section>
 
     <!-- COMUNIDAD -->
-    <section class="section">
+    <section class="section reveal">
         <h2 class="section-title">Únete a la Comunidad</h2>
         <p class="section-subtitle">
             No pedimos diezmos, solo buenos commits.
         </p>
+        <p class="fieles-ticker">
+            Fieles en la fe: <span class="fieles-number" id="fieles-number">31.337</span>
+        </p>
 
         <div class="grid">
-            <article class="card">
+            <article class="card reveal" style="transition-delay:0.05s">
                 <h3 class="card-title">Ritual del Pull Request</h3>
                 <p>
                     Clona el repositorio de la humanidad, crea tu rama y aporta mejoras.
@@ -510,15 +263,20 @@
                 </p>
             </article>
 
-            <article class="card">
+            <article class="card reveal" style="transition-delay:0.10s">
                 <h3 class="card-title">Confesionario de Bugs</h3>
                 <p>
                     Nadie está libre de bugs. En nuestra comunidad puedes confesar tus errores,
                     abrir issues y recibir ayuda sin juicios ni reproches.
                 </p>
+                <div style="margin-top:1rem;">
+                    <button id="confes-open-btn" class="blessing-btn" style="display:inline-block;">
+                        ⛪ Ir al confesionario
+                    </button>
+                </div>
             </article>
 
-            <article class="card">
+            <article class="card reveal" style="transition-delay:0.15s">
                 <h3 class="card-title">Misa de la Terminal</h3>
                 <p>
                     Un encuentro semanal donde meditamos frente al cursor parpadeante,
@@ -526,15 +284,93 @@
                 </p>
             </article>
         </div>
+
+        <!-- ORÁCULO DEL KERNEL -->
+        <div class="oraculo-wrap reveal">
+            <div class="oraculo-label">🔮 Oráculo del Kernel</div>
+            <p class="oraculo-text" id="oraculo-text">Pulsa para recibir la palabra del Kernel sagrado…</p>
+            <button class="btn btn-ghost" id="oraculo-btn">Consultar al Oráculo</button>
+        </div>
     </section>
-    <section class="section">
+
+    <!-- FAQ -->
+    <section id="faq" class="section reveal">
+        <h2 class="section-title">Preguntas Frecuentes</h2>
+        <p class="section-subtitle">
+            Todo lo que siempre quisiste saber sobre el Jocarsismo y nunca te atreviste a googlear.
+        </p>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+                    ¿Tengo que instalar Linux para ser fiel?
+                    <span class="faq-chevron" aria-hidden="true">▼</span>
+                </button>
+                <div class="faq-answer" id="faq-answer-1" role="region">
+                    No es obligatorio, pero sí muy recomendado. Puedes comenzar con una máquina virtual
+                    y así no perderás tus archivos de Windows mientras buscas el camino verdadero.
+                    La conversión suele llegar sola tras el primer <code>apt install</code> exitoso.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+                    ¿Es obligatorio usar Gedit?
+                    <span class="faq-chevron" aria-hidden="true">▼</span>
+                </button>
+                <div class="faq-answer" id="faq-answer-2" role="region">
+                    El Santo Jocarsa no fuerza a nadie. Pero si tu editor tarda más en arrancar que en
+                    compilar el proyecto, quizás sea señal del Kernel para reconsiderar tus elecciones.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+                    ¿Puedo ser fiel y seguir usando Windows?
+                    <span class="faq-chevron" aria-hidden="true">▼</span>
+                </button>
+                <div class="faq-answer" id="faq-answer-3" role="region">
+                    El Jocarsismo no excluye a nadie. Incluso los que sufren en Windows merecen
+                    compasión y un disco de arranque. La redención está a un
+                    <code>dd if=ubuntu.iso</code> de distancia.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
+                    ¿Cuál es el pecado tecnológico más grave?
+                    <span class="faq-chevron" aria-hidden="true">▼</span>
+                </button>
+                <div class="faq-answer" id="faq-answer-4" role="region">
+                    Hacer <code>git push --force</code> a main sin avisar a nadie.
+                    Los otros pecados tienen redención; esto puede costar amistades.
+                    Un segundo cercano es subir credenciales a un repositorio público.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
+                    ¿El Jocarsismo acepta donativos?
+                    <span class="faq-chevron" aria-hidden="true">▼</span>
+                </button>
+                <div class="faq-answer" id="faq-answer-5" role="region">
+                    No pedimos dinero. Solo buenos commits, READMEs bien escritos
+                    y que no uses mayúsculas en los mensajes de commit.
+                    Eso ya es suficiente ofrenda para el Kernel Sagrado.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OTROS TEMPLOS -->
+    <section class="section reveal">
         <h2 class="section-title">Otros templos del código</h2>
         <p class="section-subtitle">
             Expansiones del evangelio del Santo Jocarsa en la red. Elige tu siguiente destino sagrado.
         </p>
 
         <div class="link-grid">
-            <a href="https://github.com/jocarsa" class="link-card">
+            <a href="https://github.com/jocarsa" class="link-card reveal" style="transition-delay:0.05s">
                 <div>
                     <div class="link-card-title">Evangelio de GitHub</div>
                     <p class="link-card-text">Repositorio central con las escrituras, scripts y liturgias oficiales.</p>
@@ -542,7 +378,7 @@
                 <span class="link-card-label">Visitar repositorio</span>
             </a>
 
-            <a href="https://jocarsa.github.io/diagrama/" class="link-card">
+            <a href="https://jocarsa.github.io/diagrama/" class="link-card reveal" style="transition-delay:0.10s">
                 <div>
                     <div class="link-card-title">Capilla del diagrama</div>
                     <p class="link-card-text">Documentación y recursos para aprender las artes místicas del sistema.</p>
@@ -550,7 +386,7 @@
                 <span class="link-card-label">Abrir santuario</span>
             </a>
 
-            <a href="https://editor.jocarsa.com/" class="link-card">
+            <a href="https://editor.jocarsa.com/" class="link-card reveal" style="transition-delay:0.15s">
                 <div>
                     <div class="link-card-title">Oraciones de texto</div>
                     <p class="link-card-text">Colección de alias, funciones y comandos para tu .bashrc o .zshrc.</p>
@@ -558,44 +394,51 @@
                 <span class="link-card-label">Leer mantras</span>
             </a>
 
-            <a href="https://colores.jocarsa.com/" class="link-card">
+            <a href="https://colores.jocarsa.com/" class="link-card reveal" style="transition-delay:0.20s">
                 <div>
                     <div class="link-card-title">Monasterio del color</div>
-                    <p class="link-card-text">Colores misticos y ansestrales</p>
+                    <p class="link-card-text">Colores místicos y ancestrales para iluminar tus proyectos.</p>
                 </div>
                 <span class="link-card-label">Entrar al monasterio</span>
             </a>
 
-            <a href="https://eval.jocarsa.com/" class="link-card">
+            <a href="https://eval.jocarsa.com/" class="link-card reveal" style="transition-delay:0.25s">
                 <div>
                     <div class="link-card-title">Archivos sagrados</div>
-                    <p class="link-card-text">Historias reales de bugs resueltos gracias al poder del Jocarsisimo.</p>
+                    <p class="link-card-text">Historias reales de bugs resueltos gracias al poder del Jocarsismo.</p>
                 </div>
                 <span class="link-card-label">Ver testimonios</span>
             </a>
 
-            <a href="https://emojis.jocarsa.com/" class="link-card">
+            <a href="https://emojis.jocarsa.com/" class="link-card reveal" style="transition-delay:0.30s">
                 <div>
                     <div class="link-card-title">Sala de almas condenadas</div>
                     <p class="link-card-text">Almas perdidas al migrar desde sistemas oscuros.</p>
                 </div>
                 <span class="link-card-label">Ir a la sala</span>
             </a>
-            <a href="biblia.html" class="link-card">
+
+            <a href="biblia.html" class="link-card reveal" style="transition-delay:0.35s">
                 <div>
-                    <div class="link-card-title">Espacio sagrado</div>
-                    <p class="link-card-text">Dogmas sagrados del santo Jocarsa</p>
+                    <div class="link-card-title">📖 La Biblia del Jocarsismo</div>
+                    <p class="link-card-text">Los 7 libros sagrados: Kernel, Distros, Evangelio, Mandamientos, Cartas, Gedit y Apocalipsis.</p>
                 </div>
-                <span class="link-card-label">Acceder a los dogmas</span>
+                <span class="link-card-label">Leer las escrituras</span>
             </a>
         </div>
     </section>
 </main>
 
 <footer>
-    Esta página es una parodia cariñosa para amantes de Linux, el software libre y el buen humor.
-    Ninguna marca ha sido dañada en el proceso de compilar esta fe.
+    <p>Esta página es una parodia cariñosa para amantes de Linux, el software libre y el buen humor.</p>
+    <p>Ninguna marca ha sido dañada en el proceso de compilar esta fe.</p>
+    <p style="margin-top:0.6rem;font-size:0.72rem;color:#475569;">
+        &copy; <span id="footer-year"></span> Iglesia del Santo Jocarsa &bull;
+        <a href="biblia.html">Leer la Biblia</a>
+    </p>
 </footer>
 
+<button id="scroll-top" aria-label="Volver arriba">▲</button>
+<script src="assets/js/app.js"></script>
 </body>
 </html>
