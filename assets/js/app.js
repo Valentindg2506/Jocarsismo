@@ -50,10 +50,23 @@ function initBootScreen() {
     const overlay = document.getElementById('boot-screen');
     if (!overlay) return false; // no está en la página
 
+    const flowMessage = document.getElementById('flow-message');
+
+    function showFlowMessage() {
+        if (!flowMessage) return;
+        flowMessage.setAttribute('aria-hidden', 'false');
+        flowMessage.classList.add('show');
+        setTimeout(() => {
+            flowMessage.setAttribute('aria-hidden', 'true');
+            flowMessage.remove();
+        }, 5000);
+    }
+
     // Solo mostrar una vez por día
     const today = new Date().toDateString();
     if (localStorage.getItem(LS.BOOT_DATE) === today) {
         overlay.remove();
+        showFlowMessage();
         return false; // no hubo boot screen
     }
 
@@ -75,7 +88,10 @@ function initBootScreen() {
     function dismissBoot() {
         localStorage.setItem(LS.BOOT_DATE, today);
         overlay.classList.add('fade-out');
-        setTimeout(() => overlay.remove(), 850);
+        setTimeout(() => {
+            overlay.remove();
+            showFlowMessage();
+        }, 850);
     }
 
     skipBtn?.addEventListener('click', dismissBoot);

@@ -746,6 +746,150 @@ footer a:hover {
     color: #22c55e;
 }
 
+/* --- Mensaje de bienvenida -------------------------------- */
+.flow-message {
+    position: fixed;
+    inset: 0;
+    z-index: 190;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(circle, rgba(0, 17, 17, 0.86), rgba(0, 0, 0, 0.96));
+}
+.flow-message-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.flow-message img {
+    display: block;
+    width: min(38vw, 320px);
+    height: auto;
+    border-radius: 50%;
+    border: 3px solid rgba(34, 197, 94, 0.8);
+    box-shadow: 0 0 35px rgba(34, 197, 94, 0.75), 0 18px 50px rgba(0, 0, 0, 0.8);
+}
+.flow-message span {
+    color: #d9ffe8;
+    font-size: clamp(3.2rem, 11vw, 9rem);
+    font-weight: 800;
+    line-height: 0.95;
+    text-align: center;
+    text-shadow: 0 0 18px rgba(34, 197, 94, 0.9), 0 0 55px rgba(34, 211, 238, 0.65);
+    transform: scale(0.72) translateY(18px);
+}
+.flow-message.show {
+    animation: flow-message-display 4.8s ease-in-out forwards;
+}
+.flow-message.show span {
+    animation: flow-message-text 4.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.flow-message.show img {
+    animation: flow-saint-sway 4.8s ease-in-out forwards;
+}
+@keyframes flow-message-display {
+    0%, 12% { opacity: 0; }
+    25%, 78% { opacity: 1; }
+    100% { opacity: 0; }
+}
+@keyframes flow-message-text {
+    0%, 12% { transform: scale(0.72) translateY(18px); opacity: 0; }
+    28% { transform: scale(1) translateY(0); opacity: 1; }
+    76% { transform: scale(1.04) translateY(0); opacity: 1; }
+    100% { transform: scale(1.12) translateY(-14px); opacity: 0; }
+}
+.flow-waves {
+    position: absolute;
+    z-index: 1;
+    right: -10%;
+    bottom: -2rem;
+    left: -10%;
+    height: 8rem;
+    overflow: hidden;
+    opacity: 0;
+}
+.flow-waves::before,
+.flow-waves::after {
+    content: "";
+    position: absolute;
+    left: -10%;
+    width: 120%;
+    height: 7rem;
+    border-top: 4px solid rgba(34, 211, 238, 0.8);
+    border-radius: 50% 50% 0 0;
+    box-shadow: 0 -12px 0 rgba(34, 197, 94, 0.2), 0 -24px 0 rgba(34, 211, 238, 0.16);
+}
+.flow-waves::before {
+    top: 2rem;
+}
+.flow-waves::after {
+    top: 3.5rem;
+    border-top-color: rgba(74, 222, 128, 0.65);
+}
+.flow-message.show .flow-waves {
+    animation: flow-waves-display 4.8s ease-in-out forwards;
+}
+.flow-message.show .flow-waves::before {
+    animation: flow-wave-slide 2s ease-in-out infinite alternate;
+}
+.flow-message.show .flow-waves::after {
+    animation: flow-wave-slide 2.4s ease-in-out -0.5s infinite alternate-reverse;
+}
+.flow-penguins {
+    position: absolute;
+    z-index: 3;
+    right: 0;
+    bottom: 1.5rem;
+    left: 0;
+    height: 3rem;
+    overflow: hidden;
+}
+.flow-penguins span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    opacity: 0;
+}
+.flow-message.show .flow-penguins span {
+    animation: flow-penguin-walk 4.8s linear forwards;
+}
+.flow-message.show .flow-penguins span:nth-child(2) { animation-delay: 0.45s; }
+.flow-message.show .flow-penguins span:nth-child(3) { animation-delay: 0.9s; }
+.flow-message.show .flow-penguins span:nth-child(4) { animation-delay: 1.35s; }
+@keyframes flow-waves-display {
+    0%, 12% { opacity: 0; }
+    24%, 82% { opacity: 1; }
+    100% { opacity: 0; }
+}
+@keyframes flow-wave-slide {
+    from { transform: translateX(-3%); }
+    to { transform: translateX(3%); }
+}
+@keyframes flow-penguin-walk {
+    0% { transform: translateX(-12vw) translateY(0) scaleX(1); opacity: 0; }
+    8% { opacity: 1; }
+    24% { transform: translateX(18vw) translateY(-0.35rem) scaleX(1); }
+    40% { transform: translateX(42vw) translateY(0) scaleX(-1); }
+    56% { transform: translateX(66vw) translateY(-0.35rem) scaleX(-1); }
+    72% { transform: translateX(88vw) translateY(0) scaleX(1); opacity: 1; }
+    100% { transform: translateX(112vw) translateY(-0.35rem) scaleX(1); opacity: 0; }
+}
+@keyframes flow-saint-sway {
+    0%, 12% { transform: scale(0.72) translateY(18px); opacity: 0; }
+    24% { transform: scale(1) translateX(-24px) rotate(-3deg); opacity: 1; }
+    38% { transform: scale(1) translateX(24px) rotate(3deg); }
+    52% { transform: scale(1) translateX(-20px) rotate(-2.5deg); }
+    66% { transform: scale(1) translateX(20px) rotate(2.5deg); }
+    78% { transform: scale(1.04) translateX(0) rotate(0); opacity: 1; }
+    100% { transform: scale(1.12) translateY(-14px); opacity: 0; }
+}
+
 /* ============================================================
    CONFETI
    ============================================================ */
