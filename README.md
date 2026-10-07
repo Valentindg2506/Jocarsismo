@@ -1,3 +1,6 @@
+**Santo Refugio**
+[Jocarsismo](https://jocarsismo.vercel.app/)
+
 **Descripción**
 
 - 🕍 **Proyecto:** Iglesia del Santo Jocarsa — página paródica y afectuosa dedicada a la cultura Linux, el software libre y las costumbres de los desarrolladores. Creada como broma para el profesor y como recurso didáctico informal.
@@ -5,8 +8,8 @@
 
 **Contenido principal**
 
-- 📄 Página principal: [index.html](Jocarsismo/index.html) — templo web con hero, dogmas, liturgia, confesionario y easter eggs.
-- 📖 Biblia virtual: [biblia.html](Jocarsismo/biblia.html) — colección de textos en siete libros (Kernel, Distros, Jocarsa, Mandamientos, Cartas, Gedit, Apocalipsis).
+- 📄 Página principal: [index.html](https://github.com/Valentindg2506/Jocarsismo/blob/main/biblia.html) — templo web con hero, dogmas, liturgia, confesionario y easter eggs.
+- 📖 Biblia virtual: [biblia.html](https://github.com/Valentindg2506/Jocarsismo/blob/main/index.html) — colección de textos en siete libros (Kernel, Distros, Jocarsa, Mandamientos, Cartas, Gedit, Apocalipsis).
 - ⚙️ Recursos: `assets/` — contiene `css/`, `js/` y la imagen principal `jocarsa.png`.
 
 **Características destacadas**
